@@ -1,8 +1,6 @@
-create database Staff
+п»їcreate database Staff
 
-/*•	О сотруднике необходимо хранить следующую информацию (
-ФИО,  пол, адрес, телефон, дата рождения, специальность, зарплата, фотография). 
-Для каждого сотрудника также храниться список его сертификаций.*/
+
 
 create table Specialties
 (
@@ -29,7 +27,6 @@ create table Workers
 );
 
 insert into Workers values ('Skorichenko', 'Daniel', 'Genadievich', 1, 'Lermontova 105', '+380503040328', '19991001', 1, '14000', 'Skorichenko.jpg', 0)
-
 insert into Workers values ('Kumaransky', 'Maxim', 'Urievich', 1, 'Geroiv ATO 1488', '+380501289411', '20000427', 3, '12000', 'Kumaransky.jpg', 0)
 insert into Workers values ('Ogur', 'Arina', 'Vladimirovna', 0, 'Unaya 13', '+380994050598', '20020612', 2, '9000', 'Ogur.jpg', 0)
 
@@ -41,22 +38,22 @@ create table Users
 	Pwd varchar(20)
 );
 
-insert into Users values ('director', 'qwerty123')
-insert into Users values ('admin', 'volodya_hlebov15')
+insert into Users values ('director', 'qwerty123') -- read only
+insert into Users values ('admin', 'volodya_hlebov15') -- read and write
 
 create table [Certificates]
 (
 	Id int primary key identity,
-	CompanyName varchar(30), -- кто выдал
+	CompanyName varchar(30),
 	[Description] varchar(30)
 );
 
-insert into [Certificates] values ('html academy', 'Успешно прошел курс по html')
-insert into [Certificates] values ('html academy', 'Успешно прошел курс по php')
-insert into [Certificates] values ('Photoshop master', 'Успешно прошел курс по графическому дизайну в Photoshop')
-insert into [Certificates] values ('Design for everyone', 'Дизайнер от Бога (Adobe Il)')
+insert into [Certificates] values ('html academy', 'Design web-interfaces via html Рё css')
+insert into [Certificates] values ('html academy', 'Programming server-side part of web-application php')
+insert into [Certificates] values ('Photoshop master', 'Intermediate web-designer')
+insert into [Certificates] values ('Design for everyone', 'Awesome skills (Adobe Il)')
 insert into [Certificates] values ('CISCO', 'Professional Routing and Switching')
-insert into [Certificates] values ('Retratech', 'linux system administrator')
+insert into [Certificates] values ('Retratech', 'Linux system administrator')
 
 create table StaffandCertificates
 (
@@ -64,3 +61,9 @@ create table StaffandCertificates
 	WorkerId int foreign key references Workers(Id),
 	CertificateId int foreign key references [Certificates](Id)
 );
+
+CREATE LOGIN Director WITH PASSWORD = '1111'
+USE Staff
+CREATE USER Daniil FOR LOGIN Director
+
+ALTER ROLE db_owner ADD MEMBER Daniil

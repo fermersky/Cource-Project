@@ -47,7 +47,7 @@
                 <TextBlock Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Дизайнеры</TextBlock>
                 <TextBlock TextWrapping="Wrap" Margin="10 0 10 10">Терпеть не могут градиенты и тени, но сами их постоянно используют. Ненавидят <TextBlock FontWeight="Bold">программистов</TextBlock>.</TextBlock>
             </StackPanel>
-        </materialDesign:Card>
+        </materialDesign:Card>    
         <materialDesign:Card Margin="10" Grid.Column="2" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
             <StackPanel>
                 <Image Source="images/sys.jpg"></Image>
