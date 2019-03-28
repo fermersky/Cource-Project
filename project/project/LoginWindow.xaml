@@ -44,6 +44,7 @@
                 ToolTip="Resource name: MaterialDesignRaisedAccentButton">
                 Log in
             </Button>
+            <Label x:Name="lb"></Label>
         </StackPanel>
     </Grid>
     

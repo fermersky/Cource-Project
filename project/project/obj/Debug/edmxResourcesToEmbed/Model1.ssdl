@@ -48,7 +48,7 @@
     <Property Name="ImgFile" Type="varchar" MaxLength="100" />
     <Property Name="IsDeleted" Type="bit" />
   </EntityType>
-  <Association Name="FK__StaffandC__Certi__1CF15040">
+  <Association Name="FK__StaffandC__Certi__1B0907CE">
     <End Role="Certificates" Type="Self.Certificates" Multiplicity="0..1" />
     <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
     <ReferentialConstraint>
@@ -60,7 +60,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StaffandC__Worke__1BFD2C07">
+  <Association Name="FK__StaffandC__Worke__1A14E395">
     <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
     <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
     <ReferentialConstraint>
@@ -90,11 +90,11 @@
     <EntitySet Name="StaffandCertificates" EntityType="Self.StaffandCertificates" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__StaffandC__Certi__1CF15040" Association="Self.FK__StaffandC__Certi__1CF15040">
+    <AssociationSet Name="FK__StaffandC__Certi__1B0907CE" Association="Self.FK__StaffandC__Certi__1B0907CE">
       <End Role="Certificates" EntitySet="Certificates" />
       <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
     </AssociationSet>
-    <AssociationSet Name="FK__StaffandC__Worke__1BFD2C07" Association="Self.FK__StaffandC__Worke__1BFD2C07">
+    <AssociationSet Name="FK__StaffandC__Worke__1A14E395" Association="Self.FK__StaffandC__Worke__1A14E395">
       <End Role="Workers" EntitySet="Workers" />
       <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
     </AssociationSet>

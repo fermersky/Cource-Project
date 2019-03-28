@@ -44,14 +44,12 @@ insert into Users values ('admin', 'volodya_hlebov15') -- read and write
 create table [Certificates]
 (
 	Id int primary key identity,
-	CompanyName varchar(60),
-	[Description] varchar(60)
+	CompanyName varchar(30),
+	[Description] varchar(30)
 );
 
-
-
 insert into [Certificates] values ('html academy', 'Design web-interfaces via html и css')
-insert into [Certificates] values ('html academy', 'Server-side part of web-application php')
+insert into [Certificates] values ('html academy', 'Programming server-side part of web-application php')
 insert into [Certificates] values ('Photoshop master', 'Intermediate web-designer')
 insert into [Certificates] values ('Design for everyone', 'Awesome skills (Adobe Il)')
 insert into [Certificates] values ('CISCO', 'Professional Routing and Switching')
@@ -64,14 +62,8 @@ create table StaffandCertificates
 	CertificateId int foreign key references [Certificates](Id)
 );
 
-CREATE LOGIN Director WITH PASSWORD = '123'
+CREATE LOGIN Director WITH PASSWORD = '1111'
 USE Staff
-CREATE USER Daniel FOR LOGIN Director
+CREATE USER Daniil FOR LOGIN Director
 
-ALTER ROLE db_datareader ADD MEMBER Daniel
-
-CREATE LOGIN [Admin] WITH PASSWORD = '123'
-
-CREATE USER Ivan FOR LOGIN [Admin]
-
-ALTER ROLE db_owner ADD MEMBER Ivan
+ALTER ROLE db_owner ADD MEMBER Daniil

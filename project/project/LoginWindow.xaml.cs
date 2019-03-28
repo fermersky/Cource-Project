@@ -26,7 +26,10 @@ namespace project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var db = new StaffEntities())
+            {
+                
+            }
         }
     }
 }
