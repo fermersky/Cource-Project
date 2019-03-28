@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StaffModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Certificates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Certi__1CF15040" FromRole="Certificates" ToRole="StaffandCertificates" />
+  </EntityType>
+  <EntityType Name="Specialties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK__Workers__Special__1273C1CD" FromRole="Specialties" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="StaffandCertificates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkerId" Type="Int32" />
+    <Property Name="CertificateId" Type="Int32" />
+    <NavigationProperty Name="Certificates" Relationship="Self.FK__StaffandC__Certi__1CF15040" FromRole="StaffandCertificates" ToRole="Certificates" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK__StaffandC__Worke__1BFD2C07" FromRole="StaffandCertificates" ToRole="Workers" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Lgn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FirsnName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Lastlame" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="SpecialtyId" Type="Int32" />
+    <Property Name="Salary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ImgFile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Specialties" Relationship="Self.FK__Workers__Special__1273C1CD" FromRole="Workers" ToRole="Specialties" />
+    <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Worke__1BFD2C07" FromRole="Workers" ToRole="StaffandCertificates" />
+  </EntityType>
+  <Association Name="FK__StaffandC__Certi__1CF15040">
+    <End Role="Certificates" Type="Self.Certificates" Multiplicity="0..1" />
+    <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certificates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffandCertificates">
+        <PropertyRef Name="CertificateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Workers__Special__1273C1CD">
+    <End Role="Specialties" Type="Self.Specialties" Multiplicity="0..1" />
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialties">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="SpecialtyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StaffandC__Worke__1BFD2C07">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+    <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffandCertificates">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StaffEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Certificates" EntityType="Self.Certificates" />
+    <EntitySet Name="Specialties" EntityType="Self.Specialties" />
+    <EntitySet Name="StaffandCertificates" EntityType="Self.StaffandCertificates" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" />
+    <AssociationSet Name="FK__StaffandC__Certi__1CF15040" Association="Self.FK__StaffandC__Certi__1CF15040">
+      <End Role="Certificates" EntitySet="Certificates" />
+      <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Workers__Special__1273C1CD" Association="Self.FK__Workers__Special__1273C1CD">
+      <End Role="Specialties" EntitySet="Specialties" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StaffandC__Worke__1BFD2C07" Association="Self.FK__StaffandC__Worke__1BFD2C07">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
