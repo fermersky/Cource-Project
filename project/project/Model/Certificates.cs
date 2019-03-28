@@ -7,33 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace project.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Workers
+    public partial class Certificates
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Workers()
+        public Certificates()
         {
             this.StaffandCertificates = new HashSet<StaffandCertificates>();
         }
     
         public int Id { get; set; }
-        public string Surname { get; set; }
-        public string FirsnName { get; set; }
-        public string Lastlame { get; set; }
-        public Nullable<bool> Gender { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public Nullable<System.DateTime> BirthDate { get; set; }
-        public Nullable<int> SpecialtyId { get; set; }
-        public string Salary { get; set; }
-        public string ImgFile { get; set; }
-        public Nullable<bool> IsDeleted { get; set; }
+        public string CompanyName { get; set; }
+        public string Description { get; set; }
     
-        public virtual Specialties Specialties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StaffandCertificates> StaffandCertificates { get; set; }
     }

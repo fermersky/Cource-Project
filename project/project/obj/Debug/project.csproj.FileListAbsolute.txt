@@ -35,15 +35,11 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDes
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csprojAssemblyReference.cache
-C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\LoginWindow.g.cs
-C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\MainWindow.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\App.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project_Content.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project_MarkupCompile.cache
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project_MarkupCompile.lref
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\App.baml
-C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\LoginWindow.baml
-C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\MainWindow.baml
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.g.resources
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.Properties.Resources.resources
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csproj.GenerateResource.cache
@@ -51,3 +47,9 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csp
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csproj.CopyComplete
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.exe
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.pdb
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\ConcreteSpec.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginWindow.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\MainWindow.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\ConcreteSpec.baml
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginWindow.baml
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\MainWindow.baml

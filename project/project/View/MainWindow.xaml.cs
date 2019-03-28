@@ -1,5 +1,8 @@
-﻿using System;
+﻿using project.Model;
+using project.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +13,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace project
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class MainWindow : Window
     {
-        public LoginWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
@@ -28,7 +32,12 @@ namespace project
         {
             using (var db = new StaffEntities())
             {
-                
+                var vm = new WorkersViewModel(db.Workers.Include("Specialties").Where(w => w.SpecialtyId == 1).ToList());
+                var win = new ConcreteSpec(vm);
+                //win.DataContext = vm;
+                //db.Workers.Include("Specialties").Where(w => w.)
+
+                win.Show();
             }
         }
     }

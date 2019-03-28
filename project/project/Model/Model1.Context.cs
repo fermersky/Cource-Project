@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace project.Model
 {
     using System;
     using System.Data.Entity;

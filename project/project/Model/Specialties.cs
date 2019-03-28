@@ -7,18 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace project.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class StaffandCertificates
+    public partial class Specialties
     {
-        public int Id { get; set; }
-        public Nullable<int> WorkerId { get; set; }
-        public Nullable<int> CertificateId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Specialties()
+        {
+            this.Workers = new HashSet<Workers>();
+        }
     
-        public virtual Certificates Certificates { get; set; }
-        public virtual Workers Workers { get; set; }
+        public int Id { get; set; }
+        public string SpecName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Workers> Workers { get; set; }
     }
 }

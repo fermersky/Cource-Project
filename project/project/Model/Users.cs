@@ -7,23 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace project
+namespace project.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Specialties
+    public partial class Users
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Specialties()
-        {
-            this.Workers = new HashSet<Workers>();
-        }
-    
         public int Id { get; set; }
-        public string SpecName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Workers> Workers { get; set; }
+        public string Lgn { get; set; }
+        public string Pwd { get; set; }
     }
 }

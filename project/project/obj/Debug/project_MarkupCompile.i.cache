@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Данил\Desktop\Cource-Project\project\project\App.xaml
-22037783069
-21750853300
-181930791668
+3782162204
+2-1556844510
+20-1876364971
 20-610205239
-LoginWindow.xaml;MainWindow.xaml;
+View\ConcreteSpec.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;
 
-False
+True
 
