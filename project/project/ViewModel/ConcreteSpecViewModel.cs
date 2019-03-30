@@ -9,7 +9,7 @@ using System.Windows.Data;
 
 namespace project.ViewModel
 {
-    public class WorkersViewModel
+    public class ConcreteSpecViewModel
     {
         private ICollectionView _workersView;
 
@@ -20,7 +20,7 @@ namespace project.ViewModel
 
         public string Title { get; set; } = "test";
 
-        public WorkersViewModel(List<Model.Workers> _workers)
+        public ConcreteSpecViewModel(List<Model.Workers> _workers)
         {
             _workersView = CollectionViewSource.GetDefaultView(_workers);
         }

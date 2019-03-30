@@ -26,19 +26,7 @@ namespace project
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            using (var db = new StaffEntities())
-            {
-                var vm = new WorkersViewModel(db.Workers.Include("Specialties").Where(w => w.SpecialtyId == 1).ToList());
-                var win = new ConcreteSpec(vm);
-                //win.DataContext = vm;
-                //db.Workers.Include("Specialties").Where(w => w.)
-
-                win.Show();
-            }
+            this.DataContext = new MainViewModel();
         }
     }
 }

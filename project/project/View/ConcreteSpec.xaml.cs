@@ -25,7 +25,7 @@ namespace project
             InitializeComponent();
         }
 
-        public ConcreteSpec(WorkersViewModel vm)
+        public ConcreteSpec(ConcreteSpecViewModel vm)
         {
             InitializeComponent();
             this.DataContext = vm;

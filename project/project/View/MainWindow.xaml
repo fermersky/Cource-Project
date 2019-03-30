@@ -30,7 +30,7 @@
         <materialDesign:Card Margin="10" Grid.Column="0" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
             <StackPanel>
                 <Image Source="../images/coders.jpg"></Image>
-                <Button Click="Button_Click" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
+                <Button CommandParameter="Programmer" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
                 <TextBlock Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Программисты</TextBlock>
@@ -41,7 +41,7 @@
         <materialDesign:Card Margin="10" Grid.Column="1" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
             <StackPanel>
                 <Image Source="../images/designers.jpg"></Image>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
+                <Button CommandParameter="Designer" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
                 <TextBlock Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Дизайнеры</TextBlock>
@@ -51,7 +51,7 @@
         <materialDesign:Card Margin="10" Grid.Column="2" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
             <StackPanel>
                 <Image Source="../images/sys.jpg"></Image>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
+                <Button CommandParameter="System administrator" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
                 <TextBlock Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Сисадмины</TextBlock>
