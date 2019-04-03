@@ -52,9 +52,19 @@ namespace project.ViewModel
                             .Where(w => w.FirsnName.Contains(param) && w.Specialties.SpecName == spec)
                             .ToList();
                         Workers = CollectionViewSource.GetDefaultView(filteredWorkers);
+                        Workers.Filter = CustomerFilter;
                     }
                 }));
             }
+        }
+
+        private bool CustomerFilter(object item)
+        {
+            var worker = item as Workers;
+
+           
+
+            return true;
         }
 
         public string Title { get; set; } = "test";
