@@ -7,8 +7,13 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:local1="clr-namespace:project.Helpers"
         Title="{Binding Title}" Height="450" Width="800">
+    <Window.Resources>
+        <local1:ImgSourceConverter x:Key="ImgSourceConverter" />
+    </Window.Resources>
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="300"></ColumnDefinition>
@@ -43,6 +48,7 @@
                 <StackPanel  Orientation="Horizontal" Margin="0 10 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Surname:</TextBlock>
                     <ToggleButton
+                      x:Name="srnameTb"
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
                       IsChecked="True" />
@@ -81,15 +87,13 @@
                     <WrapPanel>
                         <materialDesign:Card Width="200">
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="140" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                                <!--Source="../images/Kumaransky.jpg"-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
                                 <Image
-                                  
-                                  Source="{Binding ImgFile}"
+                                  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"
                                   Height="140"
                                   Width="200"
                                   Stretch="UniformToFill" />

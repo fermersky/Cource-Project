@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace project
 {
@@ -27,11 +29,19 @@ namespace project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new StaffEntities())
+            string connString = ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString;
+
+            var conn = new SqlConnectionStringBuilder(connString);
+            MessageBox.Show(conn.DataSource);
+            MessageBox.Show(conn.InitialCatalog);
+            MessageBox.Show(conn.DataSource);
+            MessageBox.Show(conn.DataSource);
+
+            /*using (var db = new StaffEntities())
             {
                 var win = new MainWindow();
                 win.Show();
-            }
+            }*/
         }
     }
 }

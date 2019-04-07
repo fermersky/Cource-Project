@@ -23,6 +23,7 @@ namespace project
         public ConcreteSpec()
         {
             InitializeComponent();
+            
         }
 
         public ConcreteSpec(ConcreteSpecViewModel vm)
