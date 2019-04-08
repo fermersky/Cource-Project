@@ -1,6 +1,9 @@
 ﻿using project.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity.Core.EntityClient;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +15,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Configuration;
-using System.Data.SqlClient;
 
 namespace project
 {
@@ -29,13 +30,14 @@ namespace project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string connString = ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString;
 
-            var conn = new SqlConnectionStringBuilder(connString);
-            MessageBox.Show(conn.DataSource);
-            MessageBox.Show(conn.InitialCatalog);
-            MessageBox.Show(conn.DataSource);
-            MessageBox.Show(conn.DataSource);
+            var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString);
+            var sqlConn = new SqlConnectionStringBuilder(entityConn.ProviderConnectionString);
+
+            MessageBox.Show(sqlConn.DataSource);
+            MessageBox.Show(sqlConn.InitialCatalog);
+            MessageBox.Show(sqlConn.UserID);
+            MessageBox.Show(sqlConn.Password);
 
             /*using (var db = new StaffEntities())
             {

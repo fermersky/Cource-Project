@@ -45,16 +45,14 @@ namespace project.ViewModel
                 {
                     using (var db = new StaffEntities())
                     {
-                        /*string param = obj as string;
+                        string param = obj as string;
                         string spec = _localWorkers[0].Specialties.SpecName; // get current Speciality of Workers
 
                         var filteredWorkers = db.Workers
                             .Where(w => w.FirsnName.Contains(param) && w.Specialties.SpecName == spec)
                             .ToList();
                         Workers = CollectionViewSource.GetDefaultView(filteredWorkers);
-                        Workers.Filter = CustomerFilter;*/
-
-                        
+                        Workers.Filter = CustomerFilter;
                     }
                 }));
             }
@@ -69,7 +67,7 @@ namespace project.ViewModel
             return true;
         }
 
-        public string Title { get; set; } = "Programmers";
+        public string Title { get; set; } = "test";
 
         public ConcreteSpecViewModel(List<Model.Workers> _workers)
         {
