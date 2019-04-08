@@ -49,33 +49,33 @@
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="True" />
+                      IsChecked="{Binding FilterBySurnameOn}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Firstname:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="True" />
+                      IsChecked="{Binding FilterByFirstnameOn}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Lastname:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="True" />
+                      IsChecked="{Binding FilterByLastnameOn}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Age:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="True" />
+                      IsChecked="{Binding FilterByAgeOn}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Gender:</TextBlock>
-                    <RadioButton Margin="0 0 20 0" FontSize="16">Male</RadioButton>
-                    <RadioButton FontSize="16">Female</RadioButton>
+                    <RadioButton IsChecked="{Binding FilterMaleOn}" Margin="0 0 20 0" FontSize="16">Male</RadioButton>
+                    <RadioButton IsChecked="{Binding FilterFemaleOn}" FontSize="16">Female</RadioButton>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

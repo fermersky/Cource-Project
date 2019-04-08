@@ -105,3 +105,4 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\Microsoft.W
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\en\Microsoft.Windows.Design.Interaction.resources.dll
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\en\Microsoft.Windows.Design.Extensibility.resources.dll
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHelper.g.cs
