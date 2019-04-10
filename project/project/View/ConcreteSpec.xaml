@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local1="clr-namespace:project.Helpers"
-        Title="{Binding Title}" Height="450" Width="800">
+        Title="{Binding _currentSpeciality}" Height="450" Width="800">
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
     </Window.Resources>
@@ -22,9 +22,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel  Margin="0 30 0 0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock FontSize="16" Margin="20 0 10 0" VerticalAlignment="Center">Search:</TextBlock>
-            <TextBox
+                <TextBlock FontSize="16" Margin="20 0 10 0" VerticalAlignment="Center">Search:</TextBlock>
+                <TextBox
                 x:Name="tbSearch"
+                Text="{Binding SearchPattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 VerticalAlignment="Center"
                 AcceptsReturn="True"
                 TextWrapping="Wrap"
@@ -34,48 +35,48 @@
                 Margin="20 0 10 0"
                 FontSize="16"
                 >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="TextChanged">
-                        <i:InvokeCommandAction 
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction 
                             Command="{Binding FilterWorkersCommand}"
                             CommandParameter="{Binding ElementName=tbSearch, Path=Text}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </TextBox>
-        </StackPanel>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+            </StackPanel>
             <StackPanel Margin="20 40 0 0" Grid.Column="1">
                 <StackPanel  Orientation="Horizontal" Margin="0 10 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Surname:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="{Binding FilterBySurnameOn}" />
+                      IsChecked="{Binding FilterBySurnameOn, Mode=TwoWay, UpdateSourceTrigger =PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Firstname:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="{Binding FilterByFirstnameOn}" />
+                      IsChecked="{Binding FilterByFirstnameOn, Mode=TwoWay, UpdateSourceTrigger =PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Lastname:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="{Binding FilterByLastnameOn}" />
+                      IsChecked="{Binding FilterByLastnameOn, Mode=TwoWay, UpdateSourceTrigger =PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Age:</TextBlock>
                     <ToggleButton
                       Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
                       ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsChecked="{Binding FilterByAgeOn}" />
+                      IsChecked="{Binding FilterByAgeOn, Mode=TwoWay, UpdateSourceTrigger =PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 5 0 10">
                     <TextBlock FontSize="16" Margin="0 0 10 0">Gender:</TextBlock>
-                    <RadioButton IsChecked="{Binding FilterMaleOn}" Margin="0 0 20 0" FontSize="16">Male</RadioButton>
-                    <RadioButton IsChecked="{Binding FilterFemaleOn}" FontSize="16">Female</RadioButton>
+                    <RadioButton IsChecked="{Binding FilterMaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="0 0 20 0" FontSize="16">Male</RadioButton>
+                    <RadioButton IsChecked="{Binding FilterFemaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" FontSize="16">Female</RadioButton>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -84,83 +85,82 @@
                 <DataTemplate>
                     <WrapPanel>
                         <materialDesign:Card Width="200">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="140" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="140" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
                                 <Image
                                   
                                   Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"
                                   Height="140"
                                   Width="200"
                                   Stretch="UniformToFill" />
-                            <Button
+                                <Button
                                   Grid.Row="0"
                                   Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
                                   Margin="0 0 16 -20">
-                                <materialDesign:PackIcon Kind="Eye" />
-                            </Button>
-                            <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
-                                    <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding FirsnName}"></TextBlock>
-                                    <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Lastlame}"></TextBlock>
+                                    <materialDesign:PackIcon Kind="Eye" />
+                                </Button>
+                                <StackPanel Grid.Row="1" Margin="8 24 8 0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
+                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding FirsnName}"></TextBlock>
+                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Lastlame}"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Phone" />
+                                            <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Phone}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="Money" />
+                                            <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Salary}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="UserAddress" />
+                                            <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Address}"></TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical">
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Phone" />
-                                        <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Phone}"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="Money" />
-                                        <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Salary}"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <materialDesign:PackIcon Kind="UserAddress" />
-                                        <TextBlock Margin="5 0 5 0" FontWeight="Bold" Text="{Binding Address}"></TextBlock>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-                            <StackPanel
+                                <StackPanel
                                   HorizontalAlignment="Right"
                                   Grid.Row="2"
                                   Orientation="Horizontal"
                                   Margin="8">
-                                <Button
+                                    <Button
                                     Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30"
                                     Padding="2 0 2 0"
-                                    materialDesign:RippleAssist.IsCentered="True">          
-                                    <materialDesign:PackIcon Kind="ShareVariant" />
-                                </Button>
-                                <Button
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                        <materialDesign:PackIcon Kind="ShareVariant" />
+                                    </Button>
+                                    <Button
                                     Style="{StaticResource MaterialDesignToolButton}"
                                     Width="30"
                                     Padding="2 0 2 0"
-                                    materialDesign:RippleAssist.IsCentered="True">          
-                                    <materialDesign:PackIcon Kind="Heart" />
-                                </Button>
-                                <materialDesign:PopupBox
-                                        
-                                        Padding="2 0 2 0">      
-                                    <StackPanel>
-                                        <Button Content="More" />
-                                        <Button Content="Options" />
-                                    </StackPanel>
-                                </materialDesign:PopupBox>
-                            </StackPanel>
-                        </Grid>
+                                    materialDesign:RippleAssist.IsCentered="True">
+                                        <materialDesign:PackIcon Kind="Heart" />
+                                    </Button>
+                                    <materialDesign:PopupBox
+                                    Padding="2 0 2 0">
+                                        <StackPanel>
+                                            <Button Content="More" />
+                                            <Button Content="Options" />
+                                        </StackPanel>
+                                    </materialDesign:PopupBox>
+                                </StackPanel>
+                            </Grid>
                         </materialDesign:Card>
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top"></StackPanel>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Top"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>

@@ -52,7 +52,7 @@ namespace project.ViewModel
         }
 
         private bool filterByLastnameOn = false; // Lastname
-        public bool FilterByLastnameOn 
+        public bool FilterByLastnameOn
         {
             set
             {
@@ -62,7 +62,7 @@ namespace project.ViewModel
             get => filterByLastnameOn;
         }
 
-        
+
 
 
         private bool filterByAgeOn = false; // Age
@@ -76,7 +76,7 @@ namespace project.ViewModel
             get => filterByAgeOn;
         }
 
-        private bool filterMaleOn; // is male
+        private bool filterMaleOn = true; // is male
 
         public bool FilterMaleOn
         {
@@ -88,7 +88,7 @@ namespace project.ViewModel
             }
         }
 
-        private bool filterFemaleOn; // is female
+        private bool filterFemaleOn = false; // is female
 
         public bool FilterFemaleOn
         {
@@ -132,12 +132,10 @@ namespace project.ViewModel
                 {
                     using (var db = new StaffEntities())
                     {
-                        string param = obj as string;
-                        string spec = _localWorkers[0].Specialties.SpecName; // get current Speciality of Workers
-
                         var filteredWorkers = db.Workers
-                            .Where(w => w.FirsnName.Contains(param) && w.Specialties.SpecName == spec)
+                            .Where(w => w.Specialties.SpecName == _currentSpeciality)
                             .ToList();
+
                         Workers = CollectionViewSource.GetDefaultView(filteredWorkers);
                         Workers.Filter = CustomerFilter; // predicate
                     }
@@ -148,76 +146,76 @@ namespace project.ViewModel
         private bool CustomerFilter(object item) // predicate
         {
             var worker = item as Workers;
-
             bool result = true;
 
 
-            if (string.IsNullOrEmpty(SearchPattern))
+            if (string.IsNullOrEmpty(SearchPattern)) // if search field is empty, get all workers
             {
                 return true;
             }
             else
             {
-
-
                 if (FilterBySurnameOn)
                 {
                     if (worker.Surname.Contains(SearchPattern))
-                        result = true & result;
+                        result = result & true;
                     else
-                        result = false & result;
+                        result = result & false;
                 }
                 if (FilterByFirstnameOn)
                 {
                     if (worker.FirsnName.Contains(SearchPattern))
-                        result = true & result;
+                        result = result & true;
                     else
-                        result = false & result;
+                        result = result & false;
                 }
                 if (FilterByLastnameOn)
                 {
                     if (worker.Lastlame.Contains(SearchPattern))
-                        result = true & result;
+                        result = result & true;
                     else
-                        result = false & result;
+                        result = result & false;
                 }
                 if (FilterByAgeOn)
                 {
-                    /* if (worker.BirthDate == new DateTime(SearchPattern))
-                         result = true & result;
-                     else
-                         result = false & result;*/
-                    result = true & result;
+                    int age;
+                    if (int.TryParse(SearchPattern, out age))
+                    {
+                        if (worker.BirthDate.Value.Year + int.Parse(SearchPattern) == DateTime.Now.Year)
+                            result = result & true;
+                        else
+                            result = result & false;
+                    }
+
                 }
                 if (FilterMaleOn)
                 {
                     if (worker.Gender == FilterMaleOn)
-                        result = true & result;
+                        result = result & true;
                     else
-                        result = false & result;
-                    result = true & result;
+                        result = result & false;
                 }
-                if (FilterFemaleOn)
+                else
                 {
-                    if (worker.Gender == FilterFemaleOn)
-                        result = true & result;
+                    if (worker.Gender != FilterFemaleOn)
+                        result = result & true;
                     else
-                        result = false & result;
-                    result = true & result;
+                        result = result & false;
                 }
 
                 return result;
             }
 
-            
+
         }
 
-        public string Title { get; set; } = "test";
+        public string _currentSpeciality { get; set; }
 
-        public ConcreteSpecViewModel(List<Model.Workers> _workers)
+        public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec)
         {
             this._workersView = CollectionViewSource.GetDefaultView(_workers);
             this._localWorkers = _workers;
+            this._currentSpeciality = spec;
         }
     }
 }

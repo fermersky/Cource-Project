@@ -28,7 +28,7 @@ namespace project.ViewModel
                         var vm = new ConcreteSpecViewModel(db.Workers
                             .Include("Specialties")
                             .Where(w => w.Specialties.SpecName == spec)
-                            .ToList());
+                            .ToList(), spec);
 
                         var win = new ConcreteSpec(vm);
                         win.Show();
