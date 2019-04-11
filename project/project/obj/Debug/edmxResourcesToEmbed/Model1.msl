@@ -33,6 +33,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Lgn" ColumnName="Lgn" />
           <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -41,8 +42,8 @@
         <MappingFragment StoreEntitySet="Workers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Surname" ColumnName="Surname" />
-          <ScalarProperty Name="FirsnName" ColumnName="FirsnName" />
-          <ScalarProperty Name="Lastlame" ColumnName="Lastlame" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />

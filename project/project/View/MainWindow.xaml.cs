@@ -28,5 +28,13 @@ namespace project
             InitializeComponent();
             this.DataContext = new MainViewModel();
         }
+
+        public MainWindow(string autUser)
+        {
+            InitializeComponent();
+            this.DataContext = new MainViewModel();
+            this.Title = "Hello, " + autUser;
+        }
+
     }
 }

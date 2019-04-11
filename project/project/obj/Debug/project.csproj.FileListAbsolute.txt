@@ -34,7 +34,6 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\EntityFrame
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDesignColors.pdb
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDesignThemes.Wpf.pdb
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\MaterialDesignThemes.Wpf.xml
-C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csprojAssemblyReference.cache
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\App.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project_Content.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project_MarkupCompile.cache
@@ -108,3 +107,4 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\GeneratedIn
 D:\Daniel\today\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.baml
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csprojAssemblyReference.cache

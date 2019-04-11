@@ -164,14 +164,14 @@ namespace project.ViewModel
                 }
                 if (FilterByFirstnameOn)
                 {
-                    if (worker.FirsnName.Contains(SearchPattern))
+                    if (worker.Firstname.Contains(SearchPattern))
                         result = result & true;
                     else
                         result = result & false;
                 }
                 if (FilterByLastnameOn)
                 {
-                    if (worker.Lastlame.Contains(SearchPattern))
+                    if (worker.Lastname.Contains(SearchPattern))
                         result = result & true;
                     else
                         result = result & false;

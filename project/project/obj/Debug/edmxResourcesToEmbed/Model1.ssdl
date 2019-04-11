@@ -30,6 +30,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Lgn" Type="varchar" MaxLength="20" />
     <Property Name="Pwd" Type="varchar" MaxLength="20" />
+    <Property Name="Role" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="Workers">
     <Key>
@@ -37,8 +38,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Surname" Type="varchar" MaxLength="20" />
-    <Property Name="FirsnName" Type="varchar" MaxLength="20" />
-    <Property Name="Lastlame" Type="varchar" MaxLength="20" />
+    <Property Name="Firstname" Type="varchar" MaxLength="20" />
+    <Property Name="Lastname" Type="varchar" MaxLength="20" />
     <Property Name="Gender" Type="bit" />
     <Property Name="Address" Type="varchar" MaxLength="30" />
     <Property Name="Phone" Type="varchar" MaxLength="15" />

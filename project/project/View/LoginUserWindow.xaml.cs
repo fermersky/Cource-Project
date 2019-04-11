@@ -30,7 +30,8 @@ namespace project.View
         {
             if (isAuthorized())
             {
-                MessageBox.Show("Ura");
+                var win = new MainWindow(loginTb.Text);
+                win.Show();
             }
         }
 

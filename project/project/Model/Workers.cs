@@ -22,8 +22,8 @@ namespace project.Model
     
         public int Id { get; set; }
         public string Surname { get; set; }
-        public string FirsnName { get; set; }
-        public string Lastlame { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
         public Nullable<bool> Gender { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }

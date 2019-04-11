@@ -34,6 +34,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Lgn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Workers">
     <Key>
@@ -41,8 +42,8 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="FirsnName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Lastlame" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Gender" Type="Boolean" />
     <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
