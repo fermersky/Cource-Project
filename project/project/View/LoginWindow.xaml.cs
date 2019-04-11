@@ -1,4 +1,5 @@
 ﻿using project.Model;
+using project.View;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,7 +34,7 @@ namespace project
         {
             if (isAuthorized())
             {
-                var win = new MainWindow();
+                var win = new LoginUserWindow();
                 win.Show();
             }
         }
@@ -79,22 +80,13 @@ namespace project
             //anim.From = errorTb.Margin;
             errorTb.Text = msg;
             //anim.To = new Thickness(0, -20, 0, 0);
-            anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -15, 0, 0), KeyTime.FromPercent(0.50)));
-            anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -18, 0, 0), KeyTime.FromPercent(0.75)));
+            anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -18, 0, 0), KeyTime.FromPercent(0.30)));
+            //anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -18, 0, 0), KeyTime.FromPercent(0.85)));
             anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -20, 0, 0), KeyTime.FromPercent(1.00)));
-            anim.Duration = TimeSpan.FromSeconds(2);
+            anim.Duration = TimeSpan.FromSeconds(1);
             anim.AutoReverse = true;
             errorTb.BeginAnimation(TextBlock.MarginProperty, anim);
         }
 
-        private void HideErrorMsg()
-        {
-            var anim = new ThicknessAnimation();
-            anim.From = errorTb.Margin;
-            anim.To = new Thickness(0, 60, 0, 0);
-            anim.BeginTime = TimeSpan.FromSeconds(3);
-            anim.Duration = TimeSpan.FromSeconds(0.3);
-            errorTb.BeginAnimation(TextBlock.MarginProperty, anim);
-        }
     }
 }

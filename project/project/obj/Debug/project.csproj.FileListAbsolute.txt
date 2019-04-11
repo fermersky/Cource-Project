@@ -106,3 +106,5 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\en\Microsof
 C:\Users\Данил\Desktop\Cource-Project\project\project\bin\Debug\en\Microsoft.Windows.Design.Extensibility.resources.dll
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Daniel\today\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.baml
