@@ -29,52 +29,9 @@ namespace project
         public LoginWindow()
         {
             InitializeComponent();
-            this.DataContext = new LoginViewModel(this);
+            this.DataContext = new LoginViewModel();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (isAuthorized())
-            {
-                var win = new LoginUserWindow();
-                win.Show();
-            }
-        }
-
-        private bool isAuthorized()
-        {
-            var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString);
-            var sqlConn = new SqlConnectionStringBuilder(entityConn.ProviderConnectionString);
-            
-            if (isAreasAreFiled())
-            {
-                if (serverTb.Text == sqlConn.DataSource
-                    && databaseTb.Text == sqlConn.InitialCatalog
-                    && loginTb.Text == sqlConn.UserID
-                    && passTb.Password == sqlConn.Password)
-                {
-                    return true;
-                }
-                else
-                {
-                    ShowErrorMsg("Inputed data is wrong!");
-                    return false;
-                }
-            } 
-            else
-            {
-                ShowErrorMsg("Fill all areas!");
-                return false;
-            }
-        }
-
-        private bool isAreasAreFiled()
-        {
-            return !(string.IsNullOrEmpty(serverTb.Text)
-                || string.IsNullOrEmpty(databaseTb.Text)
-                || string.IsNullOrEmpty(loginTb.Text)
-                || string.IsNullOrEmpty(passTb.Password));
-        }
 
         public void ShowErrorMsg(string msg)
         {

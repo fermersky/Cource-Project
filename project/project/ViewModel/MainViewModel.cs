@@ -1,5 +1,6 @@
 ﻿using project.Helpers;
 using project.Model;
+using project.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,10 +45,7 @@ namespace project.ViewModel
             {
                 return viewSalaryReportCommand ?? (viewSalaryReportCommand = new RelayCommand(obj =>
                 {
-                    using (var db = new StaffEntities())
-                    {
-                        
-                    }
+                    new SalaryReportWindow().Show();
                 }));
             }
         }

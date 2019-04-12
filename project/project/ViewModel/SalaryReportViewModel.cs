@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace project.ViewModel
 {
@@ -23,7 +24,7 @@ namespace project.ViewModel
 
             using (var db = new StaffEntities())
             {
-                var some = db.Workers.GroupBy(w => w.SpecialtyId).Select(w => new { Name = w.Key });
+                
             }
         }
 

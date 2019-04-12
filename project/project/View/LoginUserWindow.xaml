@@ -30,17 +30,18 @@
 
         <StackPanel VerticalAlignment="Top" Grid.Column="1" Grid.Row="0">
             <Image Margin="0,40,10,0" Source="../images/secur.png" Height="185"></Image>
-            <TextBox x:Name="loginTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Login" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 -0 0 20"  />
+            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="loginTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Login" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 -0 0 20"  />
             <PasswordBox x:Name="passTb" FontWeight="Bold" Foreground="Black" FontSize="17"
               materialDesign:HintAssist.Hint="Password"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  Margin="0 0 0 20"  />
             <Button
                 x:Name="logBtn"
-                Click="Button_Click"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Width="100"
+                Content="Log in"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=passTb}"
                 ToolTip="Authorize me">
-                Log in
             </Button>
             <Label x:Name="lb"></Label>
         </StackPanel>

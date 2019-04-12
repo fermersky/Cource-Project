@@ -16,19 +16,14 @@ using System.Windows.Media.Animation;
 
 namespace project.ViewModel
 {
-    class LoginViewModel : DependencyObject, INotifyPropertyChanged
+    class LoginViewModel : INotifyPropertyChanged
     {
-        public LoginViewModel(Window win)
-        {
-            this.ownedWindow = win as LoginWindow;
-        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        private Window ownedWindow;
 
         //
 
@@ -81,37 +76,34 @@ namespace project.ViewModel
                 {
                     string Password = (pass as PasswordBox).Password.ToString();
 
-                    if (isAreasAreFiled(Password))
+                    if (isAreasAreFiled() && !string.IsNullOrEmpty(Password)) // check textboxes to be filed
                     {
-                        var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString);
+                        // get sql string from app.config
+
+                        var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString); // entity connection string also contains metadata parameter, but sql connection string doesn't support it
                         var sqlConn = new SqlConnectionStringBuilder(entityConn.ProviderConnectionString);
 
+                        // check inputed data
 
-                        if (ServerName == sqlConn.DataSource
-                            && DatabseName == sqlConn.InitialCatalog
-                            && Login == sqlConn.UserID
-                            && Password == sqlConn.Password)
-                        {
-                            var win = new LoginUserWindow();
-                            win.Show();
-                        }
-                        else
-                        {
+                        if (ServerName == sqlConn.DataSource && DatabseName == sqlConn.InitialCatalog && Login == sqlConn.UserID && Password == sqlConn.Password)
+                            new LoginUserWindow().Show();
+                        else // display error msg from LoginWindow
                             ((LoginWindow)Application.Current.MainWindow).ShowErrorMsg("Inputed data is wrong!");
-                        }
                     }
                     else
                         ((LoginWindow)Application.Current.MainWindow).ShowErrorMsg("Fill all areas!");
+                }, obj => // can execute condition
+                {
+                    return isAreasAreFiled();
                 }));
             }
         }
 
-        private bool isAreasAreFiled(string Pass)
+        private bool isAreasAreFiled()
         {
             return !(string.IsNullOrEmpty(ServerName)
                 || string.IsNullOrEmpty(DatabseName)
-                || string.IsNullOrEmpty(Login)
-                || string.IsNullOrEmpty(Pass));
+                || string.IsNullOrEmpty(Login));
         }
     }
 

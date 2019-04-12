@@ -45,7 +45,7 @@
     <Property Name="Phone" Type="varchar" MaxLength="15" />
     <Property Name="BirthDate" Type="date" />
     <Property Name="SpecialtyId" Type="int" />
-    <Property Name="Salary" Type="varchar" MaxLength="10" />
+    <Property Name="Salary" Type="int" />
     <Property Name="ImgFile" Type="varchar" MaxLength="100" />
     <Property Name="IsDeleted" Type="bit" />
   </EntityType>

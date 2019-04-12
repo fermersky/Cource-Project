@@ -1,4 +1,5 @@
 ﻿using project.Model;
+using project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,48 +25,10 @@ namespace project.View
         public LoginUserWindow()
         {
             InitializeComponent();
+            this.DataContext = new LoginUserViewModel();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (isAuthorized())
-            {
-                var win = new MainWindow(loginTb.Text);
-                win.Show();
-            }
-        }
-
-        private bool isAuthorized()
-        {
-            if (isAreasAreFiled())
-            {
-                using (var db = new StaffEntities())
-                {
-                    var user = db.Users.Where(u => u.Lgn == loginTb.Text).FirstOrDefault();
-
-                    if (user == null)
-                        ShowErrorMsg($"User with login \"{loginTb.Text}\" not found!");
-                    else
-                    {
-                        if (user.Pwd == passTb.Password.ToString())
-                            return true;
-                        else
-                            ShowErrorMsg($"Uncorrect password for login \"{loginTb.Text}\"");
-                    }
-                }
-            }
-            else
-                ShowErrorMsg($"Fill all areas!");
-            return false;
-        }
-
-        private bool isAreasAreFiled()
-        {
-            return !(string.IsNullOrEmpty(loginTb.Text)
-                || string.IsNullOrEmpty(passTb.Password));
-        }
-
-        private void ShowErrorMsg(string msg)
+    
+        public void ShowErrorMsg(string msg)
         {
             var anim = new ThicknessAnimationUsingKeyFrames();
 

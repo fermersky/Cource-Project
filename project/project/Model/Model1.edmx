@@ -50,7 +50,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="15" />
           <Property Name="BirthDate" Type="date" />
           <Property Name="SpecialtyId" Type="int" />
-          <Property Name="Salary" Type="varchar" MaxLength="10" />
+          <Property Name="Salary" Type="int" />
           <Property Name="ImgFile" Type="varchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
@@ -163,7 +163,7 @@
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
           <Property Name="SpecialtyId" Type="Int32" />
-          <Property Name="Salary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
           <Property Name="ImgFile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Specialties" Relationship="Self.FK__Workers__Special__1273C1CD" FromRole="Workers" ToRole="Specialties" />

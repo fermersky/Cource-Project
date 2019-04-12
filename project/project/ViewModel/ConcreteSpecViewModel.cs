@@ -153,7 +153,7 @@ namespace project.ViewModel
             {
                 return true;
             }
-            else
+            else // all selected properties must contain search text
             {
                 if (FilterBySurnameOn)
                 {
