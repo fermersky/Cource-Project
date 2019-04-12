@@ -31,19 +31,20 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1">
 
-            <TextBox x:Name="serverTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Server name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20" />
-            <TextBox x:Name="databaseTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Database name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20"  />
-            <TextBox x:Name="loginTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Login" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20"  />
+            <TextBox Text="{Binding ServerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="serverTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Server name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20" />
+            <TextBox Text="{Binding DatabseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="databaseTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Database name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20"  />
+            <TextBox Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="loginTb" FontWeight="Bold" Foreground="Black" FontSize="17" materialDesign:HintAssist.Hint="Login" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 0 0 20"  />
             <PasswordBox x:Name="passTb" FontWeight="Bold" Foreground="Black" FontSize="17"
               materialDesign:HintAssist.Hint="Password"
               Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  Margin="0 0 0 20"  />
             <Button
                 x:Name="logBtn"
-                Click="Button_Click"
+                Command="{Binding LoginCommand}"
+                CommandParameter="{Binding ElementName=passTb}"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 Width="100"
+                Content="Log in"
                 ToolTip="Authorize me">
-                Log in
             </Button>
             <Label x:Name="lb"></Label>
         </StackPanel>

@@ -36,5 +36,20 @@ namespace project.ViewModel
                 }));
             }
         }
+
+        private RelayCommand viewSalaryReportCommand;
+        public RelayCommand ViewSalaryReportCommand
+        {
+            get
+            {
+                return viewSalaryReportCommand ?? (viewSalaryReportCommand = new RelayCommand(obj =>
+                {
+                    using (var db = new StaffEntities())
+                    {
+                        
+                    }
+                }));
+            }
+        }
     }
 }

@@ -80,7 +80,7 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <ListView x:Name="WorkersListView"  IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>

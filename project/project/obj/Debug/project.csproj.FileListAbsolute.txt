@@ -108,3 +108,5 @@ D:\Daniel\today\Cource-Project\project\project\obj\Debug\GeneratedInternalTypeHe
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.baml
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\project.csprojAssemblyReference.cache
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.g.cs
+C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.baml

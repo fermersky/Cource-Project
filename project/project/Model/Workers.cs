@@ -29,7 +29,7 @@ namespace project.Model
         public string Phone { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
         public Nullable<int> SpecialtyId { get; set; }
-        public string Salary { get; set; }
+        public Nullable<int> Salary { get; set; }
         public string ImgFile { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     

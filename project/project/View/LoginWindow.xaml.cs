@@ -1,5 +1,6 @@
 ﻿using project.Model;
 using project.View;
+using project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,6 +29,7 @@ namespace project
         public LoginWindow()
         {
             InitializeComponent();
+            this.DataContext = new LoginViewModel(this);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -74,17 +76,17 @@ namespace project
                 || string.IsNullOrEmpty(passTb.Password));
         }
 
-        private void ShowErrorMsg(string msg)
+        public void ShowErrorMsg(string msg)
         {
             var anim = new ThicknessAnimationUsingKeyFrames();
-            //anim.From = errorTb.Margin;
+
             errorTb.Text = msg;
-            //anim.To = new Thickness(0, -20, 0, 0);
+
             anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -18, 0, 0), KeyTime.FromPercent(0.30)));
-            //anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -18, 0, 0), KeyTime.FromPercent(0.85)));
             anim.KeyFrames.Add(new LinearThicknessKeyFrame(new Thickness(0, -20, 0, 0), KeyTime.FromPercent(1.00)));
             anim.Duration = TimeSpan.FromSeconds(1);
             anim.AutoReverse = true;
+
             errorTb.BeginAnimation(TextBlock.MarginProperty, anim);
         }
 
