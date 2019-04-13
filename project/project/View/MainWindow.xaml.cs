@@ -32,7 +32,7 @@ namespace project
         public MainWindow(string autUser)
         {
             InitializeComponent();
-            this.DataContext = new MainViewModel();
+            this.DataContext = new MainViewModel(autUser);
             this.Title = "Hello, " + autUser;
         }
 

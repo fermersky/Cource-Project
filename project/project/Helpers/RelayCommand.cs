@@ -14,7 +14,7 @@ namespace project.Helpers
 
         public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
-            // default value of canExecute is null
+            // canExecute default value is null
 
             this.execute = execute;
             this.canExecute = canExecute;

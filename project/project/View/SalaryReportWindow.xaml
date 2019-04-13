@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project.View"
         mc:Ignorable="d"
-        Title="SalaryReportWindow" Height="450" Width="800">
+        Title="SalaryReportWindow" Height="538.013" Width="805.678">
     <Grid>
-        <ListView DataContext="{Binding SalaryReportList}"></ListView>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.1*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="../images/shutup1.png"></Image>
+        <ListView Grid.Row="1" Margin="30 30 30 30" ItemsSource="{Binding SalaryReportList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding SpecialityId}"
+                        Header="#" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding SpecialityName}"
+                        Width="150"
+                        Header="Speciality" />
+                    <GridViewColumn
+                        DisplayMemberBinding="{Binding TotalSum, StringFormat={}{0}$}"
+                        Header="Total sum" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock FontSize="14" Margin="40 0 55 0">Total for all specialties:</TextBlock>
+            <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding TotalSum, StringFormat={}{0}$}"></TextBlock>
+        </StackPanel>
     </Grid>
 </Window>
