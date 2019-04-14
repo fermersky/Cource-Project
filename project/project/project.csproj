@@ -115,11 +115,15 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ConcreteSpecViewModel.cs" />
     <Compile Include="ViewModel\SalaryReportViewModel.cs" />
+    <Compile Include="ViewModel\WorkerInfoViewModel.cs" />
     <Compile Include="View\ConcreteSpec.xaml.cs">
       <DependentUpon>ConcreteSpec.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SalaryReportWindow.xaml.cs">
       <DependentUpon>SalaryReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorkerInfoWindow.xaml.cs">
+      <DependentUpon>WorkerInfoWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\ConcreteSpec.xaml">
       <SubType>Designer</SubType>
@@ -152,6 +156,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\SalaryReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorkerInfoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

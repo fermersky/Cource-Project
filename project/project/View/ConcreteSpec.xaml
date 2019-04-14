@@ -78,9 +78,9 @@
                     <RadioButton IsChecked="{Binding FilterMaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="0 0 20 0" FontSize="16">Male</RadioButton>
                     <RadioButton IsChecked="{Binding FilterFemaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" FontSize="16">Female</RadioButton>
                 </StackPanel>
-            </StackPanel>
+            </StackPanel>   
         </StackPanel>
-        <ListView x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView SelectedItem="{Binding SelectedWorker}" PreviewMouseLeftButtonDown="WorkersListView_PreviewMouseDown" x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -103,6 +103,13 @@
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
                                   Margin="0 0 16 -20">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="TextChanged">
+                                            <i:InvokeCommandAction 
+                                                Command="{Binding ViewWorkerInfoCommand}"
+                                                CommandParameter="{Binding SelectedWorker}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                     <materialDesign:PackIcon Kind="Eye" />
                                 </Button>
                                 <StackPanel Grid.Row="1" Margin="8 24 8 0">
@@ -163,6 +170,14 @@
                     <WrapPanel Orientation="Horizontal" VerticalAlignment="Top"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown">
+                    <i:InvokeCommandAction 
+                        Command="{Binding ViewWorkerInfoCommand}"
+                        CommandParameter="{Binding SelectedWorker}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            
         </ListView>
     </Grid>
 </Window>

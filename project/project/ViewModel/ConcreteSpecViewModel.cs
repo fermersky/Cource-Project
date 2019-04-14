@@ -1,5 +1,6 @@
 ﻿using project.Helpers;
 using project.Model;
+using project.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,23 @@ namespace project.ViewModel
             }
         }
 
+        //
+
+        private Workers selectedWorker;
+
+        public Workers SelectedWorker
+        {
+            get { return selectedWorker; }
+            set
+            {
+                NotifyPropertyChanged();
+                selectedWorker = value;
+            }
+        }
+
+
+        // Filter Properties
+
         private bool filterBySurnameOn = false; // Surname
         public bool FilterBySurnameOn
         {
@@ -39,6 +57,8 @@ namespace project.ViewModel
             }
             get => filterBySurnameOn;
         }
+
+        //
 
         private bool filterByFirstnameOn = false; // Firstname
         public bool FilterByFirstnameOn
@@ -51,6 +71,8 @@ namespace project.ViewModel
             get => filterByFirstnameOn;
         }
 
+        //
+
         private bool filterByLastnameOn = false; // Lastname
         public bool FilterByLastnameOn
         {
@@ -62,8 +84,7 @@ namespace project.ViewModel
             get => filterByLastnameOn;
         }
 
-
-
+        //
 
         private bool filterByAgeOn = false; // Age
         public bool FilterByAgeOn
@@ -76,8 +97,9 @@ namespace project.ViewModel
             get => filterByAgeOn;
         }
 
-        private bool filterMaleOn = true; // is male
+        //
 
+        private bool filterMaleOn = true; // is male
         public bool FilterMaleOn
         {
             get { return filterMaleOn; }
@@ -88,8 +110,9 @@ namespace project.ViewModel
             }
         }
 
-        private bool filterFemaleOn = false; // is female
+        //
 
+        private bool filterFemaleOn = false; // is female
         public bool FilterFemaleOn
         {
             get { return filterFemaleOn; }
@@ -100,7 +123,7 @@ namespace project.ViewModel
             }
         }
 
-
+        //
 
         private ICollectionView _workersView;
         public ICollectionView Workers
@@ -114,7 +137,10 @@ namespace project.ViewModel
             get { return _workersView; }
         }
 
-        private RelayCommand filterWorkersCommand;
+        private List<Workers> _localWorkers;
+        public string _currentSpeciality { get; set; }
+
+        //
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName]string prop = "")
@@ -122,8 +148,7 @@ namespace project.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        private List<Workers> _localWorkers;
-
+        private RelayCommand filterWorkersCommand;
         public RelayCommand FilterWorkersCommand
         {
             get
@@ -209,7 +234,18 @@ namespace project.ViewModel
 
         }
 
-        public string _currentSpeciality { get; set; }
+        private RelayCommand viewWorkerInfoCommand;
+
+        public RelayCommand ViewWorkerInfoCommand
+        {
+            get
+            {
+                return viewWorkerInfoCommand ?? (viewWorkerInfoCommand = new RelayCommand((SelectedWorker) => 
+                {
+                    new WorkerInfoWindow(SelectedWorker as Workers).Show();
+                }));
+            }
+        }
 
         public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec)
         {

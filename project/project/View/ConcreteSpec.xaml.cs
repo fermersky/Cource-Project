@@ -1,4 +1,6 @@
-﻿using project.ViewModel;
+﻿using project.Model;
+using project.View;
+using project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,18 @@ namespace project
         {
             InitializeComponent();
             this.DataContext = vm;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new WorkerInfoWindow(WorkersListView.SelectedItem as Workers).Show();
+        }
+
+        private void WorkersListView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var listView = sender as ListView;
+            var worker = listView.SelectedItem as Workers;
+            MessageBox.Show(worker.Firstname);
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<Window x:Class="project.View.WorkerInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project.View"
+        xmlns:local1="clr-namespace:project.Helpers"
+        mc:Ignorable="d"
+        Title="WorkerInfoWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <Image Margin="0 20 0 20" Height="200" Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"></Image>
+            <Label Content="{Binding Firstname}"></Label>
+        </StackPanel>
+    </Grid>
+</Window>
