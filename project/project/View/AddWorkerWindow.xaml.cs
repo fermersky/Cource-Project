@@ -1,5 +1,4 @@
-﻿using project.Model;
-using project.ViewModel;
+﻿using project.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +16,14 @@ using System.Windows.Shapes;
 namespace project.View
 {
     /// <summary>
-    /// Interaction logic for WorkerInfoWindow.xaml
+    /// Interaction logic for AddWorkerWindow.xaml
     /// </summary>
-    public partial class WorkerInfoWindow : Window
+    public partial class AddWorkerWindow : Window
     {
-        public WorkerInfoWindow()
+        public AddWorkerWindow()
         {
             InitializeComponent();
-        }
-
-        public WorkerInfoWindow(Workers worker)
-        {
-            InitializeComponent();
-            this.DataContext = new WorkerInfoViewModel(worker);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            this.DataContext = new AddWorkerViewModel();
         }
     }
 }

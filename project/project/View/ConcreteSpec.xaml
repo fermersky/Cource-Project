@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local1="clr-namespace:project.Helpers"
-        Title="{Binding _currentSpeciality}" Height="450" Width="800">
+        Title="{Binding _currentSpeciality}" Height="600" Width="1236.675">
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
     </Window.Resources>
@@ -18,7 +18,9 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel  Margin="0 30 0 0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -78,9 +80,10 @@
                     <RadioButton IsChecked="{Binding FilterMaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="0 0 20 0" FontSize="16">Male</RadioButton>
                     <RadioButton IsChecked="{Binding FilterFemaleOn, Mode=TwoWay, UpdateSourceTrigger = PropertyChanged}" FontSize="16">Female</RadioButton>
                 </StackPanel>
-            </StackPanel>   
+
+            </StackPanel>
         </StackPanel>
-        <ListView SelectedItem="{Binding SelectedWorker}" PreviewMouseLeftButtonDown="WorkersListView_PreviewMouseDown" x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView SelectedIndex="{Binding Path=SelectedIndexValue}" SelectedItem="{Binding SelectedWorker}"  x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -92,7 +95,6 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Image
-                                  
                                   Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"
                                   Height="140"
                                   Width="200"
@@ -102,20 +104,14 @@
                                   Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                   HorizontalAlignment="Right"
                                   VerticalAlignment="Bottom"
+                                  ToolTip="Double Click to see full info"
                                   Margin="0 0 16 -20">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="TextChanged">
-                                            <i:InvokeCommandAction 
-                                                Command="{Binding ViewWorkerInfoCommand}"
-                                                CommandParameter="{Binding SelectedWorker}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                    <materialDesign:PackIcon Kind="Eye" />
+                                    <materialDesign:PackIcon Kind="Account" />
                                 </Button>
                                 <StackPanel Grid.Row="1" Margin="8 24 8 0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
-                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Firstname}"></TextBlock>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Typography.Capitals="AllSmallCaps" FontSize="16" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
+                                        <TextBlock  FontSize="14" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Firstname}"></TextBlock>
                                         <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Lastname}"></TextBlock>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
@@ -134,31 +130,25 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel
-                                  HorizontalAlignment="Right"
-                                  Grid.Row="2"
-                                  Orientation="Horizontal"
-                                  Margin="8">
+                                    HorizontalAlignment="Right"
+                                    Grid.Row="2"
+                                    Orientation="Horizontal"
+                                    Margin="8">
                                     <Button
-                                    Style="{StaticResource MaterialDesignToolButton}"
-                                    Width="30"
-                                    Padding="2 0 2 0"
-                                    materialDesign:RippleAssist.IsCentered="True">
+                                        Style="{StaticResource MaterialDesignToolButton}"
+                                        Width="30"
+                                        Padding="2 0 2 0"
+                                        materialDesign:RippleAssist.IsCentered="True">
                                         <materialDesign:PackIcon Kind="ShareVariant" />
                                     </Button>
                                     <Button
-                                    Style="{StaticResource MaterialDesignToolButton}"
-                                    Width="30"
-                                    Padding="2 0 2 0"
-                                    materialDesign:RippleAssist.IsCentered="True">
+                                        Style="{StaticResource MaterialDesignToolButton}"
+                                        Width="30"
+                                        Padding="2 0 2 0"
+                                        materialDesign:RippleAssist.IsCentered="True">
                                         <materialDesign:PackIcon Kind="Heart" />
                                     </Button>
-                                    <materialDesign:PopupBox
-                                    Padding="2 0 2 0">
-                                        <StackPanel>
-                                            <Button Content="More" />
-                                            <Button Content="Options" />
-                                        </StackPanel>
-                                    </materialDesign:PopupBox>
+
                                 </StackPanel>
                             </Grid>
                         </materialDesign:Card>
@@ -167,17 +157,26 @@
             </ListView.ItemTemplate>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Top"></WrapPanel>
+                    <WrapPanel Orientation="Horizontal" VerticalAlignment="Top" MaxWidth="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListView}, Path=ActualWidth}"
+                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseDown">
+                <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction 
-                        Command="{Binding ViewWorkerInfoCommand}"
-                        CommandParameter="{Binding SelectedWorker}" />
+                            Command="{Binding ViewWorkerInfoCommand}"
+                            CommandParameter="{Binding ElementName=WorkersListView, Path=SelectedItem}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-            
         </ListView>
+        <Button 
+            Click="Button_Click"
+                Grid.Row="1"
+                HorizontalAlignment="Right"
+                Margin="0 0 30 0"
+                Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+                ToolTip="Add new Worker">
+            <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
+        </Button>
     </Grid>
 </Window>

@@ -112,3 +112,11 @@ C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\Salary
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.baml
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\WorkerInfoWindow.g.cs
 C:\Users\Данил\Desktop\Cource-Project\project\project\obj\Debug\View\WorkerInfoWindow.baml
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.g.cs
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.g.cs
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\WorkerInfoWindow.g.cs
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\LoginUserWindow.baml
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.baml
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\WorkerInfoWindow.baml
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\AddWorkerWindow.g.cs
+D:\Daniel\today\Cource-Project\project\project\obj\Debug\View\AddWorkerWindow.baml

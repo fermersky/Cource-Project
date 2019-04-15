@@ -35,7 +35,7 @@ namespace project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new WorkerInfoWindow(WorkersListView.SelectedItem as Workers).Show();
+            new AddWorkerWindow().ShowDialog();
         }
 
         private void WorkersListView_PreviewMouseDown(object sender, MouseButtonEventArgs e)

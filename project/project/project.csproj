@@ -110,12 +110,16 @@
     <Compile Include="Model\Workers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddWorkerViewModel.cs" />
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ConcreteSpecViewModel.cs" />
     <Compile Include="ViewModel\SalaryReportViewModel.cs" />
     <Compile Include="ViewModel\WorkerInfoViewModel.cs" />
+    <Compile Include="View\AddWorkerWindow.xaml.cs">
+      <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ConcreteSpec.xaml.cs">
       <DependentUpon>ConcreteSpec.xaml</DependentUpon>
     </Compile>
@@ -125,6 +129,10 @@
     <Compile Include="View\WorkerInfoWindow.xaml.cs">
       <DependentUpon>WorkerInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddWorkerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ConcreteSpec.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

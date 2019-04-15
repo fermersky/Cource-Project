@@ -242,7 +242,7 @@ namespace project.ViewModel
             {
                 return viewWorkerInfoCommand ?? (viewWorkerInfoCommand = new RelayCommand((SelectedWorker) => 
                 {
-                    new WorkerInfoWindow(SelectedWorker as Workers).Show();
+                    new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
                 }));
             }
         }
