@@ -25,7 +25,9 @@
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Speciality:</Label>
                     <ComboBox Name="LocaleCombo" Width="50" DataContext="{Binding Specialties}">
-                        
+                        <Label Content="{Binding Path=SpecName}"></Label>
+                        <Label></Label>
+                        <Label></Label>
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">

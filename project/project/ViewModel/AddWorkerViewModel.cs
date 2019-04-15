@@ -21,7 +21,8 @@ namespace project.ViewModel
         {
             using (var db = new StaffEntities())
             {
-                Specialties = db.Specialties.ToList();
+                specialties = db.Specialties.ToList();
+                
             }
         }
 
