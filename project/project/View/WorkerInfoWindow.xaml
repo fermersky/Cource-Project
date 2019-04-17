@@ -17,10 +17,10 @@
             <ColumnDefinition Width="0.7*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Image VerticalAlignment="Top" Margin="20 20 0 20" MaxHeight="300"  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"></Image>
+        <Image x:Name="Image" VerticalAlignment="Top" Margin="20 20 0 20" MaxHeight="300"  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"></Image>
         <StackPanel Margin="20 0 0 0" Grid.Column="1">
             <StackPanel Margin="0 10 0 0" Grid.Column="1" Orientation="Horizontal" DataContext="{Binding CurrentWorker}">
-                <Label FontSize="20" FontWeight="Bold" Content="{Binding Surname}"></Label>
+                <TextBox FontSize="20" FontWeight="Bold" Text="{Binding ElementName=Image, Path=Source, Mode=TwoWay}"></TextBox>
                 <Label FontSize="20" Content="{Binding Firstname}"></Label>
                 <Label FontSize="20" Content="{Binding Lastname}"></Label>
             </StackPanel>
@@ -52,11 +52,19 @@
                 </StackPanel>
 
             </StackPanel>
-            <StackPanel DataContext="{Binding Certificates}">
-                <Label Content="{Binding CompanyName}"></Label>
-                <Label Content="{Binding Description}"></Label>
-            </StackPanel>
+
+            <ListBox Grid.Row="1" Margin="20" ItemsSource="{Binding Certificates}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=Certificates.CompanyName}" />
+                            <TextBlock Text="{Binding Path=Certificates.Description}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
+        
         <Button Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Margin="20 0 0 60"

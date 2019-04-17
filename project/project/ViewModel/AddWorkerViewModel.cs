@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace project.ViewModel
 {
@@ -26,7 +28,7 @@ namespace project.ViewModel
             using (var db = new StaffEntities())
             {
                 specialties = db.Specialties.ToList();
-                ImgFile = new Uri(@"../images/woman.png", UriKind.RelativeOrAbsolute);
+                
             }
         }
 
@@ -57,7 +59,7 @@ namespace project.ViewModel
                     {
                         var file = new FileInfo(diag.FileName);
                         file.CopyTo("../../images/" + diag.SafeFileName, true);
-                       // ImgFile = diag.SafeFileName;
+                        ImgFile = @"../images/" + diag.SafeFileName;
                     }
                 }));
             }
@@ -75,8 +77,9 @@ namespace project.ViewModel
             }
         }
 
-        private Uri imgFile;
-        public Uri ImgFile
+        
+        private string imgFile;
+        public string ImgFile
         {
             get => imgFile;
             set
@@ -85,7 +88,6 @@ namespace project.ViewModel
                 NotifyPropertyChanged();
             }
         }
-
 
         //
 

@@ -19,7 +19,7 @@
         <StackPanel>
             <Image
                Margin="0 40 0 0"
-               Source="{Binding ImgFile}"
+               Source="{Binding ImgFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                Height="200"
                Width="200"
                 />
@@ -39,7 +39,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Surname</Label>
-                    <TextBox Text="{Binding ImgFile}" Margin="25 0 0 0"  FontSize="17" Width="200"></TextBox>
+                    <TextBox Text="{Binding ImgFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="25 0 0 0"  FontSize="17" Width="200"></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
@@ -116,7 +116,7 @@
                 HorizontalAlignment="Left"
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Width="100"
-                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                ToolTip="Back to Workers"
                 Content="Back">
         </Button>
         <Button Grid.Column="1"
@@ -126,7 +126,6 @@
                 HorizontalAlignment="Right"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 Width="200"
-                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
                 Content="Add new worker">
 
         </Button>

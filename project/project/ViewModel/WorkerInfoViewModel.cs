@@ -20,12 +20,10 @@ namespace project.ViewModel
             using (var db = new StaffEntities())
             {
                 Certificates = new List<StaffandCertificates>();
+                
+                //Certificates = db.StaffandCertificates.Where(w => w.Id == worker.Id).ToList();
+                Certificates = db.StaffandCertificates.Include("Certificates").Where(w => w.Id == worker.Id).ToList();
 
-                Certificates = db.StaffandCertificates.Where(w => w.Id == worker.Id).ToList();
-
-                // Certificates[0].Certificates.CompanyName
-
-            
             }
         }
 
@@ -54,7 +52,11 @@ namespace project.ViewModel
         public List<StaffandCertificates> Certificates
         {
             get { return certificates; }
-            set { certificates = value; NotifyPropertyChanged(); }
+            set
+            {
+                certificates = value;
+                NotifyPropertyChanged();
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

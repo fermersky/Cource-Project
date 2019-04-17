@@ -20,7 +20,7 @@
         <Grid.RowDefinitions>
 
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Orientation="Vertical">
             <StackPanel  Margin="0 30 0 0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -173,7 +173,7 @@
             Click="Button_Click"
                 Grid.Row="1"
                 HorizontalAlignment="Right"
-                Margin="0 0 30 0"
+                Margin="0 0 30 30"
                 Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
                 ToolTip="Add new Worker">
             <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
