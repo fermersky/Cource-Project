@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Daniel\today\Cource-Project\project\project\obj\Debug\
+D:\Daniel\Cource-Project\project\project\obj\Debug\
 project
 none
 false
 DEBUG;TRACE
-D:\Daniel\today\Cource-Project\project\project\App.xaml
+D:\Daniel\Cource-Project\project\project\App.xaml
 71466150804
 2-1556844510
 321283495909
-24-1941259344
+25-1935779031
 View\AddWorkerWindow.xaml;View\ConcreteSpec.xaml;View\LoginUserWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\SalaryReportWindow.xaml;View\WorkerInfoWindow.xaml;
 
-False
+True
 

@@ -7,6 +7,7 @@
         xmlns:local1="clr-namespace:project.Helpers"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        x:Name="AddWindow"
         Title="AddWorkerWindow" Height="626.582" Width="831.899">
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
@@ -19,7 +20,7 @@
         <StackPanel>
             <Image
                Margin="0 40 0 0"
-               Source="{Binding ImgFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+               Source="{Binding ImgFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ImgSourceConverter}}"
                Height="200"
                Width="200"
                 />
@@ -39,7 +40,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Surname</Label>
-                    <TextBox Text="{Binding ImgFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="25 0 0 0"  FontSize="17" Width="200"></TextBox>
+                    <TextBox Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="25 0 0 0"  FontSize="17" Width="200"></TextBox>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
@@ -122,6 +123,7 @@
         <Button Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Command="{Binding AddWorkerCommand}"
+                CommandParameter="{Binding ElementName=AddWindow}"
                 Margin="0 0 20 30"
                 HorizontalAlignment="Right"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"

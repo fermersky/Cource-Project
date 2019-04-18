@@ -55,11 +55,15 @@ namespace project.ViewModel
                     var diag = new OpenFileDialog();
                     diag.Filter = "Image Files|*.jpg;*.jpeg;*.png";
 
-                    if (diag.ShowDialog() != null)
+                    if (diag.ShowDialog() != false)
                     {
                         var file = new FileInfo(diag.FileName);
-                        file.CopyTo("../../images/" + diag.SafeFileName, true);
-                        ImgFile = @"../images/" + diag.SafeFileName;
+                        try
+                        {
+                            file.CopyTo("../../images/" + diag.SafeFileName, true);
+                        }
+                        catch (Exception) { }
+                        ImgFile = diag.SafeFileName;
                     }
                 }));
             }
@@ -72,13 +76,43 @@ namespace project.ViewModel
             {
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand((obj) => 
                 {
-                    MessageBox.Show(BirthDate.ToString());
+                    if (ImgFile == null)
+                    {
+                        if (Gender == true) // male
+                            ImgFile = "man.png";
+                        else
+                            ImgFile = "woman.png";
+                    }
+
+                    var worker = new Workers()
+                    {
+                        Surname = this.Surname,
+                        Firstname = this.Firstname,
+                        Lastname = this.Lastname,
+                        Gender = this.Gender,
+                        Address = this.Address,
+                        Phone = "+380" + this.Phone,
+                        BirthDate = this.BirthDate,
+                        SpecialtyId = this.SpecId,
+                        Salary = this.Salary,
+                        ImgFile = this.ImgFile,
+                        IsDeleted = false
+                    };
+
+                    using (var db = new StaffEntities())
+                    {
+                        db.Workers.Add(worker);
+                        db.SaveChanges();
+                    }
+
+                    (obj as Window).Close();
+
                 }));
             }
         }
 
         
-        private string imgFile;
+        private string imgFile = null;
         public string ImgFile
         {
             get => imgFile;
@@ -173,6 +207,21 @@ namespace project.ViewModel
                 NotifyPropertyChanged();
             }
         }
+
+        //
+
+        private string phone;
+
+        public string Phone
+        {
+            get { return phone; }
+            set
+            {
+                phone = value;
+                NotifyPropertyChanged();
+            }
+        }
+
 
         //
 

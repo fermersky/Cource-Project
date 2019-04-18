@@ -82,8 +82,9 @@
                 </StackPanel>
 
             </StackPanel>
+
         </StackPanel>
-        <ListView SelectedIndex="{Binding Path=SelectedIndexValue}" SelectedItem="{Binding SelectedWorker}"  x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView  SelectedIndex="{Binding Path=SelectedIndexValue}" SelectedItem="{Binding SelectedWorker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -95,9 +96,10 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Image
-                                  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"
-                                  Height="140"
+                                  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}, Mode=OneWay}"
+                                  Height="180"
                                   Width="200"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Top" 
                                   Stretch="UniformToFill" />
                                 <Button
                                   Grid.Row="0"
@@ -106,13 +108,15 @@
                                   VerticalAlignment="Bottom"
                                   ToolTip="Double Click to see full info"
                                   Margin="0 0 16 -20">
-                                    <materialDesign:PackIcon Kind="Account" />
+                                 <materialDesign:PackIcon Kind="Account" />
                                 </Button>
                                 <StackPanel Grid.Row="1" Margin="8 24 8 0">
                                     <StackPanel Orientation="Vertical">
-                                        <TextBlock Typography.Capitals="AllSmallCaps" FontSize="16" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
-                                        <TextBlock  FontSize="14" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Firstname}"></TextBlock>
-                                        <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Lastname}"></TextBlock>
+                                        <TextBlock  FontSize="14" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Surname}"></TextBlock>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock  FontSize="14" Margin="0 0 5 0" FontWeight="Bold" Text="{Binding Firstname}"></TextBlock>
+                                            <TextBlock FontSize="14" Margin="0 0 5 10" FontWeight="Bold" Text="{Binding Lastname}"></TextBlock>
+                                        </StackPanel>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
@@ -179,4 +183,9 @@
             <materialDesign:PackIcon Kind="Add" Height="24" Width="24" />
         </Button>
     </Grid>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Activated">
+            <i:InvokeCommandAction Command="{Binding FilterWorkersCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 </Window>

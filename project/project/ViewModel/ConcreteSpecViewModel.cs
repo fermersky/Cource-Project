@@ -247,11 +247,25 @@ namespace project.ViewModel
             }
         }
 
+        private RelayCommand updateListViewCommand;
+
+        public RelayCommand UpdateListViewCommand
+        {
+            get
+            {
+                return updateListViewCommand ?? (updateListViewCommand = new RelayCommand((obj) =>
+                {
+                    MessageBox.Show("Test");
+                }));
+            }
+        }
+
         public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec)
         {
             this._workersView = CollectionViewSource.GetDefaultView(_workers);
             this._localWorkers = _workers;
             this._currentSpeciality = spec;
         }
+
     }
 }
