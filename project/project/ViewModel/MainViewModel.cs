@@ -50,7 +50,10 @@ namespace project.ViewModel
             }
         }
 
-        public MainViewModel() { }
+        public MainViewModel()
+        {
+
+        }
 
         public MainViewModel(string autUser)
         {

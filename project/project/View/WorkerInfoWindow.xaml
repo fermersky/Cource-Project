@@ -7,7 +7,8 @@
         xmlns:local1="clr-namespace:project.Helpers"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="WorkerInfoWindow" Height="483.215" Width="802.031">
+        x:Name="Window"
+        Title="{Binding Speciality}" Height="483.215" Width="802.031">
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
     </Window.Resources>

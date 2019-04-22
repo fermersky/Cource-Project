@@ -32,6 +32,9 @@ namespace project.View
             this.DataContext = new WorkerInfoViewModel(worker);
         }
 
+
+
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

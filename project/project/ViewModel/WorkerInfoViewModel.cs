@@ -16,15 +16,21 @@ namespace project.ViewModel
         {
             this.CurrentWorker = worker;
             this.ImgFile = worker.ImgFile;
+            this.Speciality = worker.Specialties.SpecName;
 
             using (var db = new StaffEntities())
             {
                 Certificates = new List<StaffandCertificates>();
-                
-                //Certificates = db.StaffandCertificates.Where(w => w.Id == worker.Id).ToList();
                 Certificates = db.StaffandCertificates.Include("Certificates").Where(w => w.Id == worker.Id).ToList();
-
             }
+        }
+
+        private string speciality;
+
+        public string Speciality
+        {
+            get { return speciality; }
+            set { speciality = value; }
         }
 
         private Workers currentWorker;

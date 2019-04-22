@@ -158,6 +158,7 @@ namespace project.ViewModel
                     using (var db = new StaffEntities())
                     {
                         var filteredWorkers = db.Workers
+                            .Include("Specialties")
                             .Where(w => w.Specialties.SpecName == _currentSpeciality)
                             .ToList();
 
@@ -242,7 +243,12 @@ namespace project.ViewModel
             {
                 return viewWorkerInfoCommand ?? (viewWorkerInfoCommand = new RelayCommand((SelectedWorker) => 
                 {
-                    new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
+                    using (var db = new StaffEntities())
+                    {
+                        var worker = db.Workers.Include("Specialties").Where(w => w.Id == (SelectedWorker as Workers).Id);
+                        new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
+                    }
+                        
                 }));
             }
         }

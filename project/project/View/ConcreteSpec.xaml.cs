@@ -38,11 +38,11 @@ namespace project
             new AddWorkerWindow().ShowDialog();
         }
 
-        private void WorkersListView_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click1(object sender, RoutedEventArgs e)
         {
-            var listView = sender as ListView;
-            var worker = listView.SelectedItem as Workers;
-            MessageBox.Show(worker.Firstname);
+            var item = ((sender as Button)?.Tag as ListViewItem)?.DataContext;
+            var itemId = (item as Workers)?.Firstname;
+            MessageBox.Show(itemId);
         }
     }
 }

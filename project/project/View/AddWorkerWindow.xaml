@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         x:Name="AddWindow"
-        Title="AddWorkerWindow" Height="626.582" Width="831.899">
+        Title="AddWorkerWindow" Height="748.082" Width="831.899">
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
     </Window.Resources>
@@ -35,14 +35,23 @@
                 Content="Load image">
             </Button>
         </StackPanel>
-        <StackPanel Margin="20 20 0 0" Grid.Column="1">
+
+        <StackPanel Margin="20 30 0 0" Grid.Column="1" Orientation="Horizontal">
+            <Label FontSize="19" Foreground="#00796B">|</Label>
+            <Label Foreground="#1C1C1C" FontSize="18">Speciality:</Label>
+            <ComboBox VerticalAlignment="Top" Margin="20 0 0 0" Width="200" FontSize="17" ItemsSource="{Binding Specialties}" DisplayMemberPath="SpecName"
+                              SelectedValuePath="Id" SelectedValue="{Binding SpecId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel DataContext="{Binding CurrentWorker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="20 80 0 0" Grid.Column="1">
             <StackPanel Margin="0 10 0 0" Grid.Column="1" Orientation="Vertical">
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Surname</Label>
                     <TextBox Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="25 0 0 0"  FontSize="17" Width="200"></TextBox>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Firstname</Label>
@@ -59,20 +68,14 @@
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Gender</Label>
                     <RadioButton IsChecked="{Binding Gender}" Margin="35 0 20 0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignRadioButton}">
-                        Male 
+                        Male
                     </RadioButton>
                     <RadioButton VerticalAlignment="Center" Style="{StaticResource MaterialDesignRadioButton}">
                         Female
                     </RadioButton>
                 </StackPanel>
                 <Button Height="3" Margin="0 20 0 20"></Button>
-                <StackPanel Orientation="Horizontal">
-                    <Label FontSize="19" Foreground="#00796B">|</Label>
-                    <Label Foreground="#1C1C1C" FontSize="18">Speciality:</Label>
-                    <ComboBox Margin="20 0 0 0" Width="200" FontSize="17" ItemsSource="{Binding Specialties}" DisplayMemberPath="SpecName"
-                                SelectedValuePath="Id" SelectedValue="{Binding SpecId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                 
-                                />
-                </StackPanel>
+
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#00796B">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Address</Label>
@@ -103,14 +106,9 @@
                       materialDesign:HintAssist.Hint="Pick Date"
                       Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
                 </StackPanel>
-                
-
-            </StackPanel>
-            <StackPanel DataContext="{Binding Certificates}">
-                <Label Content="{Binding CompanyName}"></Label>
-                <Label Content="{Binding Description}"></Label>
             </StackPanel>
         </StackPanel>
+        
         <Button Grid.Column="1"
                 VerticalAlignment="Bottom"
                 Margin="20 0 0 30"
@@ -118,6 +116,7 @@
                 Style="{StaticResource MaterialDesignRaisedDarkButton}"
                 Width="100"
                 ToolTip="Back to Workers"
+                Click="Button_Click"
                 Content="Back">
         </Button>
         <Button Grid.Column="1"

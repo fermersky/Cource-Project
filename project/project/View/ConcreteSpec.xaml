@@ -147,10 +147,12 @@
                                     </Button>
                                     <Button
                                         Style="{StaticResource MaterialDesignToolButton}"
+                                        Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
+                                        Click="Button_Click1"
                                         Width="30"
                                         Padding="2 0 2 0"
                                         materialDesign:RippleAssist.IsCentered="True">
-                                        <materialDesign:PackIcon Kind="Heart" />
+                                        <materialDesign:PackIcon Kind="Pencil" />
                                     </Button>
 
                                 </StackPanel>

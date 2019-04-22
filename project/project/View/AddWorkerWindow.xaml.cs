@@ -25,5 +25,10 @@ namespace project.View
             InitializeComponent();
             this.DataContext = new AddWorkerViewModel();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

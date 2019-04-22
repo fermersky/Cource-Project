@@ -106,6 +106,4 @@ namespace project.ViewModel
                 || string.IsNullOrEmpty(Login));
         }
     }
-
-    
 }

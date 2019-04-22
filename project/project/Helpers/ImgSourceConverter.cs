@@ -16,7 +16,7 @@ namespace project.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           
+
             if (value != null)
             {
                 string part = (string)value;
@@ -28,6 +28,8 @@ namespace project.Helpers
 
                 using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
+                    
+
                     rawImageData = new byte[fs.Length];
                     int count = (int)fs.Length / 1024;
                     for (int i = 0; i < count; i++)

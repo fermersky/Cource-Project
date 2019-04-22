@@ -27,8 +27,10 @@ namespace project.ViewModel
         {
             using (var db = new StaffEntities())
             {
+                CurrentWorker = new Workers();
+                CurrentWorker.Gender = true;
                 specialties = db.Specialties.ToList();
-                
+                //CurrentWorker = db.Workers.Where(w => w.Id == 1).FirstOrDefault();
             }
         }
 
@@ -76,15 +78,16 @@ namespace project.ViewModel
             {
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand((obj) => 
                 {
-                    if (ImgFile == null)
+                    if (CurrentWorker.ImgFile == null)
                     {
-                        if (Gender == true) // male
-                            ImgFile = "man.png";
+                        if (CurrentWorker.Gender == true) // male
+                            CurrentWorker.ImgFile = "man.png";
                         else
-                            ImgFile = "woman.png";
+                            CurrentWorker.ImgFile = "woman.png";
                     }
 
-                    var worker = new Workers()
+
+                    /*var worker = new Workers()
                     {
                         Surname = this.Surname,
                         Firstname = this.Firstname,
@@ -94,24 +97,56 @@ namespace project.ViewModel
                         Phone = "+380" + this.Phone,
                         BirthDate = this.BirthDate,
                         SpecialtyId = this.SpecId,
-                        Salary = this.Salary,
+                        Salary = int.Parse(this.Salary),
                         ImgFile = this.ImgFile,
                         IsDeleted = false
-                    };
+                    };*/
 
                     using (var db = new StaffEntities())
                     {
-                        db.Workers.Add(worker);
+
+                        CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
+                        CurrentWorker.IsDeleted = false;
+                        db.Workers.Add(CurrentWorker);
                         db.SaveChanges();
                     }
 
                     (obj as Window).Close();
 
+                }, (obj) => 
+                {
+                    //return true;
+                    return isAllAreaField();
                 }));
             }
         }
 
-        
+        private bool isAllAreaField()
+        {
+            int s;
+            return !(string.IsNullOrEmpty(CurrentWorker.Firstname) ||
+                     string.IsNullOrEmpty(CurrentWorker.Lastname) ||
+                     string.IsNullOrEmpty(CurrentWorker.Surname) ||
+                     string.IsNullOrEmpty(CurrentWorker.Address) ||
+                     (CurrentWorker.Salary == null) ||
+                     (SpecId == -1) ||
+                     (CurrentWorker.BirthDate == null) ||
+                     (CurrentWorker.Salary == null));
+        }
+
+        //
+
+        private Workers currentWorker;
+
+        public Workers CurrentWorker
+        {
+            get { return currentWorker; }
+            set { currentWorker = value; NotifyPropertyChanged(); }
+        }
+
+
+        //
+
         private string imgFile = null;
         public string ImgFile
         {
@@ -125,121 +160,7 @@ namespace project.ViewModel
 
         //
 
-        private string firstname;
-
-        public string Firstname
-        {
-            get { return firstname; }
-            set
-            {
-                firstname = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        // 
-
-        private string lastname;
-
-        public string Lastname
-        {
-            get { return lastname; }
-            set
-            {
-                lastname = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        // 
-
-        private string surname;
-
-        public string Surname
-        {
-            get { return surname; }
-            set
-            {
-                surname = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        //
-
-        private bool gender = true;
-
-        public bool Gender
-        {
-            get { return gender; }
-            set
-            {
-                gender = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-
-        //
-
-        private string address;
-
-        public string Address
-        {
-            get { return address; }
-            set
-            {
-                address = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        //
-
-        private DateTime? birthDate;
-
-        public DateTime? BirthDate
-        {
-            get { return birthDate; }
-            set
-            {
-                birthDate = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        //
-
-        private string phone;
-
-        public string Phone
-        {
-            get { return phone; }
-            set
-            {
-                phone = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-
-        //
-
-        private int salary;
-
-        public int Salary
-        {
-            get { return salary; }
-            set
-            {
-                salary = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        //
-
-        private int specId;
+        private int specId = -1;
 
         public int SpecId
         {
