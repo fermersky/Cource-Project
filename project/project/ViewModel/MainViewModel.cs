@@ -31,7 +31,7 @@ namespace project.ViewModel
                             .Where(w => w.Specialties.SpecName == spec)
                             .ToList(), spec);
 
-                        var win = new ConcreteSpec(vm);
+                        var win = new ConcreteSpec(vm, _autUser);
                         win.Show();
                     }
                 }));
@@ -39,6 +39,8 @@ namespace project.ViewModel
         }
 
         private RelayCommand viewSalaryReportCommand;
+        private string _autUser;
+
         public RelayCommand ViewSalaryReportCommand
         {
             get
@@ -57,7 +59,7 @@ namespace project.ViewModel
 
         public MainViewModel(string autUser)
         {
-
+            _autUser = autUser;
         }
     }
 }

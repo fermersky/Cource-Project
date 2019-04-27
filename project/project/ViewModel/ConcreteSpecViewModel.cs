@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace project.ViewModel
@@ -140,6 +141,8 @@ namespace project.ViewModel
         private List<Workers> _localWorkers;
         public string _currentSpeciality { get; set; }
 
+        private string _autUser;
+
         //
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -232,7 +235,6 @@ namespace project.ViewModel
                 return result;
             }
 
-
         }
 
         private RelayCommand viewWorkerInfoCommand;
@@ -247,8 +249,7 @@ namespace project.ViewModel
                     {
                         var worker = db.Workers.Include("Specialties").Where(w => w.Id == (SelectedWorker as Workers).Id);
                         new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
-                    }
-                        
+                    } 
                 }));
             }
         }
@@ -271,6 +272,7 @@ namespace project.ViewModel
             this._workersView = CollectionViewSource.GetDefaultView(_workers);
             this._localWorkers = _workers;
             this._currentSpeciality = spec;
+            this._autUser = _autUser;
         }
 
     }

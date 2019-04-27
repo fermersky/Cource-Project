@@ -22,15 +22,18 @@ namespace project
     /// </summary>
     public partial class ConcreteSpec : Window
     {
+        private string _autUser;
+
         public ConcreteSpec()
         {
             InitializeComponent();
         }
 
-        public ConcreteSpec(ConcreteSpecViewModel vm)
+        public ConcreteSpec(ConcreteSpecViewModel vm, string _autUser)
         {
             InitializeComponent();
             this.DataContext = vm;
+            this._autUser = _autUser;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -41,8 +44,12 @@ namespace project
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
             var item = ((sender as Button)?.Tag as ListViewItem)?.DataContext;
-            var itemId = (item as Workers)?.Firstname;
-            MessageBox.Show(itemId);
+            var workerId = (item as Workers).Id;
+
+            if (_autUser == "admin")
+                new AddWorkerWindow(workerId).ShowDialog();
+            else
+                MessageBox.Show("Access Denied. You must login as Admin", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

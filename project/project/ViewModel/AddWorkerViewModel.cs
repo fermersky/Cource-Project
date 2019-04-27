@@ -25,12 +25,27 @@ namespace project.ViewModel
 
         public AddWorkerViewModel()
         {
+            Operation = "Add new worker";
             using (var db = new StaffEntities())
             {
                 CurrentWorker = new Workers();
                 CurrentWorker.Gender = true;
                 specialties = db.Specialties.ToList();
                 //CurrentWorker = db.Workers.Where(w => w.Id == 1).FirstOrDefault();
+            }
+        }
+
+        public AddWorkerViewModel(int workerId)
+        {
+            this.workerId = workerId;
+            Operation = "Save changes";
+
+            using (var db = new StaffEntities())
+            {
+                CurrentWorker = db.Workers.Where(w => w.Id == workerId).FirstOrDefault();
+                specialties = db.Specialties.ToList();
+                SpecId = (int)CurrentWorker.SpecialtyId;
+                ImgFile = CurrentWorker.ImgFile;
             }
         }
 
@@ -66,6 +81,7 @@ namespace project.ViewModel
                         }
                         catch (Exception) { }
                         ImgFile = diag.SafeFileName;
+                        CurrentWorker.ImgFile = ImgFile;
                     }
                 }));
             }
@@ -76,54 +92,50 @@ namespace project.ViewModel
         {
             get
             {
-                return addWorkerCommand ?? (addWorkerCommand = new RelayCommand((obj) => 
+                return addWorkerCommand ?? (addWorkerCommand = new RelayCommand((obj) =>
                 {
-                    if (CurrentWorker.ImgFile == null)
+                    if (Operation == "Add new worker")
                     {
-                        if (CurrentWorker.Gender == true) // male
-                            CurrentWorker.ImgFile = "man.png";
-                        else
-                            CurrentWorker.ImgFile = "woman.png";
+                        if (CurrentWorker.ImgFile == null)
+                        {
+                            if (CurrentWorker.Gender == true) // male
+                                CurrentWorker.ImgFile = "man.png";
+                            else
+                                CurrentWorker.ImgFile = "woman.png";
+                        }
+
+
+                        using (var db = new StaffEntities())
+                        {
+                            CurrentWorker.Phone = "+380" + CurrentWorker.Phone;
+                            CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
+                            CurrentWorker.IsDeleted = false;
+                            db.Workers.Add(CurrentWorker);
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        using (var db = new StaffEntities())
+                        {
+                            var oldWorker = db.Workers.Where(w => w.Id == workerId).FirstOrDefault();
+                            db.Entry(oldWorker).CurrentValues.SetValues(CurrentWorker);
+                            db.SaveChanges();
+                        }
                     }
 
+                (obj as Window).Close();
 
-                    /*var worker = new Workers()
-                    {
-                        Surname = this.Surname,
-                        Firstname = this.Firstname,
-                        Lastname = this.Lastname,
-                        Gender = this.Gender,
-                        Address = this.Address,
-                        Phone = "+380" + this.Phone,
-                        BirthDate = this.BirthDate,
-                        SpecialtyId = this.SpecId,
-                        Salary = int.Parse(this.Salary),
-                        ImgFile = this.ImgFile,
-                        IsDeleted = false
-                    };*/
-
-                    using (var db = new StaffEntities())
-                    {
-
-                        CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
-                        CurrentWorker.IsDeleted = false;
-                        db.Workers.Add(CurrentWorker);
-                        db.SaveChanges();
-                    }
-
-                    (obj as Window).Close();
-
-                }, (obj) => 
+                }, (obj) =>
                 {
-                    //return true;
                     return isAllAreaField();
                 }));
+
             }
         }
 
         private bool isAllAreaField()
         {
-            int s;
             return !(string.IsNullOrEmpty(CurrentWorker.Firstname) ||
                      string.IsNullOrEmpty(CurrentWorker.Lastname) ||
                      string.IsNullOrEmpty(CurrentWorker.Surname) ||
@@ -161,6 +173,7 @@ namespace project.ViewModel
         //
 
         private int specId = -1;
+        private int workerId;
 
         public int SpecId
         {
@@ -172,5 +185,6 @@ namespace project.ViewModel
             }
         }
 
+        public string Operation { get; private set; }
     }
 }

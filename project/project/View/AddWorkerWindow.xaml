@@ -127,8 +127,7 @@
                 HorizontalAlignment="Right"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 Width="200"
-                Content="Add new worker">
-
+                Content="{Binding Operation}">
         </Button>
     </Grid>
 </Window>
