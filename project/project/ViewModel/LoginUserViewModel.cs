@@ -40,17 +40,18 @@ namespace project.ViewModel
         }
 
         private RelayCommand loginCommand;
-            
+
         public RelayCommand LoginCommand
         {
             get
             {
-                return loginCommand ?? (loginCommand = new RelayCommand(pass => 
+                return loginCommand ?? (loginCommand = new RelayCommand(pass =>
                 {
                     string Password = (pass as PasswordBox).Password.ToString();
 
-                    if (!string.IsNullOrEmpty(Password)) 
+                    if (!string.IsNullOrEmpty(Password))
                     {
+
                         using (var db = new StaffEntities())
                         {
                             var user = db.Users.Where(u => u.Lgn == Login).FirstOrDefault();
@@ -65,6 +66,7 @@ namespace project.ViewModel
                                     ((View.LoginUserWindow)Application.Current.MainWindow).ShowErrorMsg($"Uncorrect password for login \"{Login}\"");
                             }
                         }
+
                     }
                     else
                         ((View.LoginUserWindow)Application.Current.MainWindow).ShowErrorMsg("Fill all areas!");

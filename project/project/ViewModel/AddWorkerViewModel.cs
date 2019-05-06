@@ -23,7 +23,7 @@ namespace project.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 
-        public AddWorkerViewModel()
+        public AddWorkerViewModel() // Worker adding mode of viewmodel
         {
             Operation = "Add new worker";
             using (var db = new StaffEntities())
@@ -35,7 +35,7 @@ namespace project.ViewModel
             }
         }
 
-        public AddWorkerViewModel(int workerId)
+        public AddWorkerViewModel(int workerId) // Worker editing mode of viewmodel
         {
             this.workerId = workerId;
             Operation = "Save changes";
@@ -49,7 +49,7 @@ namespace project.ViewModel
             }
         }
 
-        private List<Specialties> specialties;
+        private List<Specialties> specialties; // combobox source
 
         public List<Specialties> Specialties
         {
@@ -94,11 +94,11 @@ namespace project.ViewModel
             {
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand((obj) =>
                 {
-                    if (Operation == "Add new worker")
+                    if (Operation == "Add new worker") // adding mode
                     {
                         if (CurrentWorker.ImgFile == null)
                         {
-                            if (CurrentWorker.Gender == true) // male
+                            if (CurrentWorker.Gender == true) // gender is male
                                 CurrentWorker.ImgFile = "man.png";
                             else
                                 CurrentWorker.ImgFile = "woman.png";
@@ -110,17 +110,34 @@ namespace project.ViewModel
                             CurrentWorker.Phone = "+380" + CurrentWorker.Phone;
                             CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
                             CurrentWorker.IsDeleted = false;
-                            db.Workers.Add(CurrentWorker);
-                            db.SaveChanges();
+
+                            try
+                            {
+                                db.Workers.Add(CurrentWorker);
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Something wrong!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
                     else
                     {
                         using (var db = new StaffEntities())
                         {
-                            var oldWorker = db.Workers.Where(w => w.Id == workerId).FirstOrDefault();
-                            db.Entry(oldWorker).CurrentValues.SetValues(CurrentWorker);
-                            db.SaveChanges();
+                            CurrentWorker.SpecialtyId = SpecId;
+                            var oldWorker = db.Workers.Include("Specialties").Where(w => w.Id == workerId).FirstOrDefault();
+                            
+                            try
+                            {
+                                db.Entry(oldWorker).CurrentValues.SetValues(CurrentWorker); // exchnage workers
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Something wrong!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                         }
                     }
 
@@ -185,6 +202,6 @@ namespace project.ViewModel
             }
         }
 
-        public string Operation { get; private set; }
+        public string Operation { get; private set; } // button caption
     }
 }

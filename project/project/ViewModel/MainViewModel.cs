@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -29,7 +30,7 @@ namespace project.ViewModel
                         var vm = new ConcreteSpecViewModel(db.Workers
                             .Include("Specialties")
                             .Where(w => w.Specialties.SpecName == spec)
-                            .ToList(), spec);
+                            .ToList(), spec, _autUser);
 
                         var win = new ConcreteSpec(vm, _autUser);
                         win.Show();

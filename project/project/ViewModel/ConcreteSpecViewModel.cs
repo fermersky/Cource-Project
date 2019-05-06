@@ -131,17 +131,19 @@ namespace project.ViewModel
         {
             set
             {
-                _workersView = value;
-                NotifyPropertyChanged();
-                _workersView.Refresh();
+                new Task(new Action(() => 
+                {
+                    _workersView = value;
+                    NotifyPropertyChanged();
+                    _workersView.Refresh();
+                })).Start();
             }
             get { return _workersView; }
         }
 
         private List<Workers> _localWorkers;
-        public string _currentSpeciality { get; set; }
-
-        private string _autUser;
+        public string _currentSpeciality { get; set; } // title of window
+        public string _autUser { get; private set; }
 
         //
 
@@ -160,14 +162,30 @@ namespace project.ViewModel
                 {
                     using (var db = new StaffEntities())
                     {
-                        var filteredWorkers = db.Workers
-                            .Include("Specialties")
-                            .Where(w => w.Specialties.SpecName == _currentSpeciality)
-                            .ToList();
-
-                        Workers = CollectionViewSource.GetDefaultView(filteredWorkers);
-                        Workers.Filter = CustomerFilter; // predicate
+                        new Task(new Action(() => 
+                        {
+                            Workers = CollectionViewSource.GetDefaultView(_localWorkers);
+                            Workers.Filter = CustomerFilter; // predicate
+                        })).Start();
                     }
+                }));
+            }
+        }
+
+        private RelayCommand addWorkerCommand;
+        public RelayCommand AddWorkerCommand
+        {
+            get
+            {
+                return addWorkerCommand ?? (addWorkerCommand = new RelayCommand(obj =>
+                {
+                    using (var db = new StaffEntities())
+                    {
+                        new AddWorkerWindow().ShowDialog();
+                    }
+                }, (obj) => 
+                {
+                    return (this._autUser == "admin") || false;
                 }));
             }
         }
@@ -247,27 +265,19 @@ namespace project.ViewModel
                 {
                     using (var db = new StaffEntities())
                     {
-                        var worker = db.Workers.Include("Specialties").Where(w => w.Id == (SelectedWorker as Workers).Id);
+                        var worker = db.Workers
+                            .Include("Specialties")
+                            .Where(w => w.Id == (SelectedWorker as Workers).Id);
+
                         new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
                     } 
                 }));
             }
         }
 
-        private RelayCommand updateListViewCommand;
 
-        public RelayCommand UpdateListViewCommand
-        {
-            get
-            {
-                return updateListViewCommand ?? (updateListViewCommand = new RelayCommand((obj) =>
-                {
-                    MessageBox.Show("Test");
-                }));
-            }
-        }
 
-        public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec)
+        public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec, string _autUser)
         {
             this._workersView = CollectionViewSource.GetDefaultView(_workers);
             this._localWorkers = _workers;

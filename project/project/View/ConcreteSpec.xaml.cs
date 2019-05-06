@@ -36,10 +36,6 @@ namespace project
             this._autUser = _autUser;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new AddWorkerWindow().ShowDialog();
-        }
 
         private void Button_Click1(object sender, RoutedEventArgs e)
         {
@@ -49,7 +45,7 @@ namespace project
             if (_autUser == "admin")
                 new AddWorkerWindow(workerId).ShowDialog();
             else
-                MessageBox.Show("Access Denied. You must login as Admin", "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Access Denied. You must login as Admin", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

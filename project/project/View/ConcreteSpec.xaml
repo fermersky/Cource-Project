@@ -176,7 +176,8 @@
             </i:Interaction.Triggers>
         </ListView>
         <Button 
-            Click="Button_Click"
+                
+                Command="{Binding AddWorkerCommand}"
                 Grid.Row="1"
                 HorizontalAlignment="Right"
                 Margin="0 0 30 30"
