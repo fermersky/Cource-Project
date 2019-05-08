@@ -9,6 +9,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local1="clr-namespace:project.Helpers"
         Title="{Binding _currentSpeciality}" Height="600" Width="1236.675">
+
     <Window.Resources>
         <local1:ImgSourceConverter x:Key="ImgSourceConverter"></local1:ImgSourceConverter>
     </Window.Resources>
@@ -84,7 +85,7 @@
             </StackPanel>
 
         </StackPanel>
-        <ListView  SelectedIndex="{Binding Path=SelectedIndexValue}" SelectedItem="{Binding SelectedWorker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged}" >
+        <ListView  SelectedIndex="{Binding Path=SelectedIndexValue}" SelectedItem="{Binding SelectedWorker, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  x:Name="WorkersListView" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Workers, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -186,13 +187,14 @@
         </Button>
         <materialDesign:Snackbar Grid.Row="1" IsActive="{Binding TooltipIsActive}" HorizontalAlignment="Stretch" x:Name="SnackbarFive">
             <materialDesign:SnackbarMessage
-                Content="Asdasd"
+                Content="{Binding TooltipText}"
                 ActionContent="OK" />   
         </materialDesign:Snackbar>
     </Grid>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Activated">
-            <i:InvokeCommandAction Command="{Binding FilterWorkersCommand}" />
+            <i:InvokeCommandAction Command="{Binding RefreshDbCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
 </Window>

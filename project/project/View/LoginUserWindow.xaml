@@ -12,7 +12,7 @@
          TextOptions.TextFormattingMode="Ideal"
          TextOptions.TextRenderingMode="Auto"
          FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="LoginWindow" Height="490.5" Width="795.5">
+        Title="LoginWindow" Height="490.5" Width="795.5" Icon="/project;component/images/bglogin2.jpg">
     <!--<Window.Background>
         <ImageBrush ImageSource="images/bglogin2.jpg"></ImageBrush>
     </Window.Background>-->

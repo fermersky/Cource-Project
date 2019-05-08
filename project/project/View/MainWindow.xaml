@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="523" Width="811"
+        Title="MainWindow" Height="534.333" Width="811.667"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -18,29 +18,34 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="120" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label Margin="0 40 0 0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Our "Strong" Organization</Label>
+      
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Label Margin="0 40 0 0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Our</Label>
+            <Label Foreground="#D50000" Margin="0 40 0 0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">"Strong"</Label>
+            <Label Margin="0 40 0 0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Organization</Label>
+        </StackPanel>
 
-        <materialDesign:Card Margin="10" Grid.Column="0"  Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
+        <materialDesign:Card Margin="10,10,10,0" Grid.Column="0"  Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right" Height="286">
             <StackPanel>
-                <Image Source="../images/coders.jpg"></Image>
+                <Image Height="144" Width="300" Stretch="Fill" Source="../images/coders.jpg"></Image>
                 <Button CommandParameter="Programmer" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
                 <TextBlock Padding="10 0 10 10" Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Программисты</TextBlock>
-                <TextBlock Padding="10 0 10 10" TextWrapping="Wrap" Margin="10 0 10 10">Самые ленивые, но самые трудоспособные люди на земле. Ненавидят <TextBlock FontWeight="Bold">дизайнеров</TextBlock>.</TextBlock>
+                <TextBlock  Padding="10 0 10 0" TextWrapping="Wrap" Margin="10 0 10 30">Самые ленивые, но самые трудоспособные люди на земле. Ненавидят <TextBlock FontWeight="Bold">дизайнеров</TextBlock>.</TextBlock>
 
             </StackPanel>
         </materialDesign:Card>
         <materialDesign:Card Margin="10" Grid.Column="1" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
             <StackPanel>
-                <Image Source="../images/designers.jpg"></Image>
+                <Image Source="../images/designers.jpg" Height="144"></Image>
                 <Button CommandParameter="Designer" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
@@ -48,14 +53,16 @@
                 <TextBlock Padding="10 0 10 10" TextWrapping="Wrap" Margin="10 0 10 10">Терпеть не могут градиенты и тени, но сами их постоянно используют. Ненавидят <TextBlock FontWeight="Bold">программистов</TextBlock>.</TextBlock>
             </StackPanel>
         </materialDesign:Card>
-        <materialDesign:Card Margin="10" Grid.Column="2" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right">
-            <StackPanel>
-                <Image Source="../images/sys.jpg"></Image>
+        <materialDesign:Card Margin="10,10,10,0" Grid.Column="2" Grid.Row="1"  materialDesign:ShadowAssist.ShadowDepth="Depth3" materialDesign:ShadowAssist.ShadowEdges="Bottom,Right" Height="285">
+            <StackPanel Height="281">
+                <Image Stretch="Fill" Source="../images/sys.jpg" Height="144" Margin="0 0 0 0" />
                 <Button CommandParameter="System administrator" Command="{Binding OpenConcreteCommand}" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Right" Margin="0 -20 10 0">
                     <materialDesign:PackIcon Kind="Eye" />
                 </Button>
-                <TextBlock Padding="10 0 10 10" Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}">Сисадмины</TextBlock>
-                <TextBlock Padding="10 0 10 10" TextWrapping="Wrap" Margin="10 0 10 10">Вечно заспаные, вечно в свитере, вечно с бубном. Ненавидят <TextBlock FontWeight="Bold">бухгалтеров</TextBlock></TextBlock>
+                <TextBlock Padding="10 0 10 10" Margin="10 0 10 10" FontWeight="Bold" Style="{StaticResource MaterialDesignSubheadingTextBlock}"><Run Text="Сисадмины"/></TextBlock>
+                <TextBlock Padding="10 0 10 10" TextWrapping="Wrap" Margin="10 0 10 10"><Run Text="Вечно заспаные, вечно в свитере, вечно с бубном. Ненавидят "/><InlineUIContainer>
+                        <TextBlock FontWeight="Bold"><Run Text="бухгалтеров"/></TextBlock>
+                    </InlineUIContainer></TextBlock>
             </StackPanel>
         </materialDesign:Card>
         <Button Grid.Column="1" Grid.Row="2"
@@ -65,5 +72,6 @@
                 Command="{Binding ViewSalaryReportCommand}"
                 Content="View salary report">
         </Button>
+
     </Grid>
 </Window>

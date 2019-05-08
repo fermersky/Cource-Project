@@ -7,10 +7,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Threading;
 
 namespace project.ViewModel
 {
@@ -24,6 +26,19 @@ namespace project.ViewModel
             set { tooltipIsActive = value; }
         }
 
+        //
+
+        private string tooltipText;
+
+        public string TooltipText
+        {
+            get { return tooltipText; }
+            set { tooltipText = value; }
+        }
+
+
+
+        //
 
         private string searchPattern; // textbox value
 
@@ -168,6 +183,30 @@ namespace project.ViewModel
                 {
                     using (var db = new StaffContext())
                     {
+                        this._localWorkers = db.Workers
+                            .Include("Specialties")
+                            .Where(w => w.Specialties.SpecName == this._currentSpeciality)
+                            .ToList();
+                        Workers = CollectionViewSource.GetDefaultView(_localWorkers);
+                        Workers.Filter = CustomerFilter; // predicate
+                    }
+                }));
+            }
+        }
+
+        private RelayCommand refreshDbCommand;
+        public RelayCommand RefreshDbCommand
+        {
+            get
+            {
+                return refreshDbCommand ?? (refreshDbCommand = new RelayCommand(obj =>
+                {
+                    using (var db = new StaffContext())
+                    {
+                        this._localWorkers = db.Workers
+                            .Include("Specialties")
+                            .Where(w => w.Specialties.SpecName == this._currentSpeciality)
+                            .ToList();
                         Workers = CollectionViewSource.GetDefaultView(_localWorkers);
                         Workers.Filter = CustomerFilter; // predicate
                     }
@@ -255,7 +294,6 @@ namespace project.ViewModel
 
                 return result;
             }
-
         }
 
         private RelayCommand viewWorkerInfoCommand;
@@ -269,8 +307,8 @@ namespace project.ViewModel
                     using (var db = new StaffContext())
                     {
                         var worker = db.Workers
-                            .Include("Specialties")
-                            .Where(w => w.Id == (SelectedWorker as Workers).Id);
+                           .Include("Specialties")
+                           .Where(w => w.Id == (SelectedWorker as Workers).Id);
 
                         new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
                     } 
@@ -287,6 +325,5 @@ namespace project.ViewModel
             this._currentSpeciality = spec;
             this._autUser = _autUser;
         }
-
     }
 }

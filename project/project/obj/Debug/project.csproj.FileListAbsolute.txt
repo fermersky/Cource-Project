@@ -148,3 +148,5 @@ D:\Daniel\Cource-Project\project\project\obj\Debug\View\MainWindow.baml
 D:\Daniel\Cource-Project\project\project\obj\Debug\View\SalaryReportWindow.baml
 D:\Daniel\Cource-Project\project\project\obj\Debug\View\WorkerInfoWindow.baml
 D:\Daniel\Cource-Project\project\project\obj\Debug\project.csprojAssemblyReference.cache
+D:\Daniel\today\Cource-Project\project\project\bin\Debug\PropertyChanged.dll
+D:\Daniel\today\Cource-Project\project\project\bin\Debug\PropertyChanged.xml
