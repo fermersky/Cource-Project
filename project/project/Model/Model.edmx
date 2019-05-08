@@ -35,7 +35,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lgn" Type="varchar" MaxLength="20" />
           <Property Name="Pwd" Type="varchar" MaxLength="20" />
-          <Property Name="Role" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -54,7 +53,7 @@
           <Property Name="ImgFile" Type="varchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
-        <Association Name="FK__StaffandC__Certi__1B0907CE">
+        <Association Name="FK__StaffandC__Certi__1CF15040">
           <End Role="Certificates" Type="Self.Certificates" Multiplicity="0..1" />
           <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,7 +65,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__StaffandC__Worke__1A14E395">
+        <Association Name="FK__StaffandC__Worke__1BFD2C07">
           <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
           <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -96,11 +95,11 @@
           <EntitySet Name="StaffandCertificates" EntityType="Self.StaffandCertificates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__StaffandC__Certi__1B0907CE" Association="Self.FK__StaffandC__Certi__1B0907CE">
+          <AssociationSet Name="FK__StaffandC__Certi__1CF15040" Association="Self.FK__StaffandC__Certi__1CF15040">
             <End Role="Certificates" EntitySet="Certificates" />
             <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
           </AssociationSet>
-          <AssociationSet Name="FK__StaffandC__Worke__1A14E395" Association="Self.FK__StaffandC__Worke__1A14E395">
+          <AssociationSet Name="FK__StaffandC__Worke__1BFD2C07" Association="Self.FK__StaffandC__Worke__1BFD2C07">
             <End Role="Workers" EntitySet="Workers" />
             <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
           </AssociationSet>
@@ -121,7 +120,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompanyName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Certi__1B0907CE" FromRole="Certificates" ToRole="StaffandCertificates" />
+          <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Certi__1CF15040" FromRole="Certificates" ToRole="StaffandCertificates" />
         </EntityType>
         <EntityType Name="Specialties">
           <Key>
@@ -138,8 +137,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WorkerId" Type="Int32" />
           <Property Name="CertificateId" Type="Int32" />
-          <NavigationProperty Name="Certificates" Relationship="Self.FK__StaffandC__Certi__1B0907CE" FromRole="StaffandCertificates" ToRole="Certificates" />
-          <NavigationProperty Name="Workers" Relationship="Self.FK__StaffandC__Worke__1A14E395" FromRole="StaffandCertificates" ToRole="Workers" />
+          <NavigationProperty Name="Certificates" Relationship="Self.FK__StaffandC__Certi__1CF15040" FromRole="StaffandCertificates" ToRole="Certificates" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__StaffandC__Worke__1BFD2C07" FromRole="StaffandCertificates" ToRole="Workers" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -148,7 +147,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Lgn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Pwd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -167,9 +165,9 @@
           <Property Name="ImgFile" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Specialties" Relationship="Self.FK__Workers__Special__1273C1CD" FromRole="Workers" ToRole="Specialties" />
-          <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Worke__1A14E395" FromRole="Workers" ToRole="StaffandCertificates" />
+          <NavigationProperty Name="StaffandCertificates" Relationship="Self.FK__StaffandC__Worke__1BFD2C07" FromRole="Workers" ToRole="StaffandCertificates" />
         </EntityType>
-        <Association Name="FK__StaffandC__Certi__1B0907CE">
+        <Association Name="FK__StaffandC__Certi__1CF15040">
           <End Role="Certificates" Type="Self.Certificates" Multiplicity="0..1" />
           <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,7 +191,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__StaffandC__Worke__1A14E395">
+        <Association Name="FK__StaffandC__Worke__1BFD2C07">
           <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
           <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
           <ReferentialConstraint>
@@ -205,13 +203,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StaffEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="StaffContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Certificates" EntityType="Self.Certificates" />
           <EntitySet Name="Specialties" EntityType="Self.Specialties" />
           <EntitySet Name="StaffandCertificates" EntityType="Self.StaffandCertificates" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Workers" EntityType="Self.Workers" />
-          <AssociationSet Name="FK__StaffandC__Certi__1B0907CE" Association="Self.FK__StaffandC__Certi__1B0907CE">
+          <AssociationSet Name="FK__StaffandC__Certi__1CF15040" Association="Self.FK__StaffandC__Certi__1CF15040">
             <End Role="Certificates" EntitySet="Certificates" />
             <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
           </AssociationSet>
@@ -219,7 +217,7 @@
             <End Role="Specialties" EntitySet="Specialties" />
             <End Role="Workers" EntitySet="Workers" />
           </AssociationSet>
-          <AssociationSet Name="FK__StaffandC__Worke__1A14E395" Association="Self.FK__StaffandC__Worke__1A14E395">
+          <AssociationSet Name="FK__StaffandC__Worke__1BFD2C07" Association="Self.FK__StaffandC__Worke__1BFD2C07">
             <End Role="Workers" EntitySet="Workers" />
             <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
           </AssociationSet>
@@ -229,7 +227,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StaffModelStoreContainer" CdmEntityContainer="StaffEntities">
+        <EntityContainerMapping StorageEntityContainer="StaffModelStoreContainer" CdmEntityContainer="StaffContext">
           <EntitySetMapping Name="Certificates">
             <EntityTypeMapping TypeName="StaffModel.Certificates">
               <MappingFragment StoreEntitySet="Certificates">
@@ -262,7 +260,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Lgn" ColumnName="Lgn" />
                 <ScalarProperty Name="Pwd" ColumnName="Pwd" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

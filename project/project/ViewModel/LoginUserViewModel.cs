@@ -51,8 +51,7 @@ namespace project.ViewModel
 
                     if (!string.IsNullOrEmpty(Password))
                     {
-
-                        using (var db = new StaffEntities())
+                        using (var db = new StaffContext())
                         {
                             var user = db.Users.Where(u => u.Lgn == Login).FirstOrDefault();
 

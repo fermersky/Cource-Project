@@ -16,6 +16,15 @@ namespace project.ViewModel
 {
     public class ConcreteSpecViewModel : INotifyPropertyChanged
     {
+        private bool tooltipIsActive = false;
+
+        public bool TooltipIsActive
+        {
+            get { return tooltipIsActive; }
+            set { tooltipIsActive = value; }
+        }
+
+
         private string searchPattern; // textbox value
 
         public string SearchPattern
@@ -131,12 +140,9 @@ namespace project.ViewModel
         {
             set
             {
-                new Task(new Action(() => 
-                {
-                    _workersView = value;
-                    NotifyPropertyChanged();
-                    _workersView.Refresh();
-                })).Start();
+                _workersView = value;
+                NotifyPropertyChanged();
+                _workersView.Refresh();
             }
             get { return _workersView; }
         }
@@ -160,13 +166,10 @@ namespace project.ViewModel
             {
                 return filterWorkersCommand ?? (filterWorkersCommand = new RelayCommand(obj =>
                 {
-                    using (var db = new StaffEntities())
+                    using (var db = new StaffContext())
                     {
-                        new Task(new Action(() => 
-                        {
-                            Workers = CollectionViewSource.GetDefaultView(_localWorkers);
-                            Workers.Filter = CustomerFilter; // predicate
-                        })).Start();
+                        Workers = CollectionViewSource.GetDefaultView(_localWorkers);
+                        Workers.Filter = CustomerFilter; // predicate
                     }
                 }));
             }
@@ -179,7 +182,7 @@ namespace project.ViewModel
             {
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand(obj =>
                 {
-                    using (var db = new StaffEntities())
+                    using (var db = new StaffContext())
                     {
                         new AddWorkerWindow().ShowDialog();
                     }
@@ -263,7 +266,7 @@ namespace project.ViewModel
             {
                 return viewWorkerInfoCommand ?? (viewWorkerInfoCommand = new RelayCommand((SelectedWorker) => 
                 {
-                    using (var db = new StaffEntities())
+                    using (var db = new StaffContext())
                     {
                         var worker = db.Workers
                             .Include("Specialties")

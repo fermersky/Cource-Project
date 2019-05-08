@@ -24,7 +24,7 @@ namespace project.ViewModel
 
             SalaryReportList = new List<SalaryInfo>();
 
-            using (var db = new StaffEntities())
+            using (var db = new StaffContext())
             {
                 // TODO
                 /* Доделать отчет по начислениям з.п

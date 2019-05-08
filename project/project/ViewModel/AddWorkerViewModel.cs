@@ -26,7 +26,7 @@ namespace project.ViewModel
         public AddWorkerViewModel() // Worker adding mode of viewmodel
         {
             Operation = "Add new worker";
-            using (var db = new StaffEntities())
+            using (var db = new StaffContext())
             {
                 CurrentWorker = new Workers();
                 CurrentWorker.Gender = true;
@@ -40,7 +40,7 @@ namespace project.ViewModel
             this.workerId = workerId;
             Operation = "Save changes";
 
-            using (var db = new StaffEntities())
+            using (var db = new StaffContext())
             {
                 CurrentWorker = db.Workers.Where(w => w.Id == workerId).FirstOrDefault();
                 specialties = db.Specialties.ToList();
@@ -105,7 +105,7 @@ namespace project.ViewModel
                         }
 
 
-                        using (var db = new StaffEntities())
+                        using (var db = new StaffContext())
                         {
                             CurrentWorker.Phone = "+380" + CurrentWorker.Phone;
                             CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
@@ -124,7 +124,7 @@ namespace project.ViewModel
                     }
                     else
                     {
-                        using (var db = new StaffEntities())
+                        using (var db = new StaffContext())
                         {
                             CurrentWorker.SpecialtyId = SpecId;
                             var oldWorker = db.Workers.Include("Specialties").Where(w => w.Id == workerId).FirstOrDefault();

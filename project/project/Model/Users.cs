@@ -17,6 +17,5 @@ namespace project.Model
         public int Id { get; set; }
         public string Lgn { get; set; }
         public string Pwd { get; set; }
-        public string Role { get; set; }
     }
 }

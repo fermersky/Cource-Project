@@ -13,10 +13,10 @@ namespace project.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StaffEntities : DbContext
+    public partial class StaffContext : DbContext
     {
-        public StaffEntities()
-            : base("name=StaffEntities")
+        public StaffContext()
+            : base("name=StaffContext")
         {
         }
     

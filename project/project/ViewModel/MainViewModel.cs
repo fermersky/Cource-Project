@@ -18,11 +18,11 @@ namespace project.ViewModel
         {
             get
             {
-                // if openProgersCommand is not null return it, else right hand
+                // if openProgersCommand is not null return it, else right side
 
                 return openConcreteCommand ?? (openConcreteCommand = new RelayCommand(obj =>
                 {
-                    using (var db = new StaffEntities())
+                    using (var db = new StaffContext())
                     {
                         string spec = obj as string;
 
