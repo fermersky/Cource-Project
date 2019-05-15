@@ -203,5 +203,21 @@ namespace project.ViewModel
         }
 
         public string Operation { get; private set; } // button caption
+
+        public RelayCommand RelayCommand
+        {
+            get => default(RelayCommand);
+            set
+            {
+            }
+        }
+
+        public Workers Workers
+        {
+            get => default(Workers);
+            set
+            {
+            }
+        }
     }
 }
