@@ -6,39 +6,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Threading;
 
 namespace project.ViewModel
 {
     public class ConcreteSpecViewModel : INotifyPropertyChanged
     {
-        private bool tooltipIsActive = false;
-
-        public bool TooltipIsActive
-        {
-            get { return tooltipIsActive; }
-            set { tooltipIsActive = value; }
-        }
-
-        //
-
-        private string tooltipText;
-
-        public string TooltipText
-        {
-            get { return tooltipText; }
-            set { tooltipText = value; }
-        }
-
-
-
-        //
 
         private string searchPattern; // textbox value
 
@@ -68,7 +41,6 @@ namespace project.ViewModel
                 selectedWorker = value;
             }
         }
-
 
         // Filter Properties
 
@@ -185,7 +157,7 @@ namespace project.ViewModel
                     {
                         this._localWorkers = db.Workers
                             .Include("Specialties")
-                            .Where(w => w.Specialties.SpecName == this._currentSpeciality)
+                            .Where(w => w.Specialties.SpecName == this._currentSpeciality && w.IsDeleted == false)
                             .ToList();
                         Workers = CollectionViewSource.GetDefaultView(_localWorkers);
                         Workers.Filter = CustomerFilter; // predicate
@@ -194,25 +166,7 @@ namespace project.ViewModel
             }
         }
 
-        private RelayCommand refreshDbCommand;
-        public RelayCommand RefreshDbCommand
-        {
-            get
-            {
-                return refreshDbCommand ?? (refreshDbCommand = new RelayCommand(obj =>
-                {
-                    using (var db = new StaffContext())
-                    {
-                        this._localWorkers = db.Workers
-                            .Include("Specialties")
-                            .Where(w => w.Specialties.SpecName == this._currentSpeciality)
-                            .ToList();
-                        Workers = CollectionViewSource.GetDefaultView(_localWorkers);
-                        Workers.Filter = CustomerFilter; // predicate
-                    }
-                }));
-            }
-        }
+       
 
         private RelayCommand addWorkerCommand;
         public RelayCommand AddWorkerCommand
@@ -222,9 +176,7 @@ namespace project.ViewModel
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand(obj =>
                 {
                     using (var db = new StaffContext())
-                    {
                         new AddWorkerWindow().ShowDialog();
-                    }
                 }, (obj) => 
                 {
                     return (this._autUser == "admin") || false;
@@ -267,8 +219,7 @@ namespace project.ViewModel
                 }
                 if (FilterByAgeOn)
                 {
-                    int age;
-                    if (int.TryParse(SearchPattern, out age))
+                    if (int.TryParse(SearchPattern, out int age))
                     {
                         if (worker.BirthDate.Value.Year + int.Parse(SearchPattern) == DateTime.Now.Year)
                             result = result & true;
@@ -318,7 +269,7 @@ namespace project.ViewModel
 
 
 
-        public ConcreteSpecViewModel(List<Model.Workers> _workers, string spec, string _autUser)
+        public ConcreteSpecViewModel(List<Workers> _workers, string spec, string _autUser)
         {
             this._workersView = CollectionViewSource.GetDefaultView(_workers);
             this._localWorkers = _workers;

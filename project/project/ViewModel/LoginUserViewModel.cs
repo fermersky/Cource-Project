@@ -1,19 +1,11 @@
 ﻿using project.Helpers;
 using project.Model;
-using project.View;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 
 
 namespace project.ViewModel
@@ -39,6 +31,8 @@ namespace project.ViewModel
             }
         }
 
+        //
+
         private RelayCommand loginCommand;
 
         public RelayCommand LoginCommand
@@ -56,24 +50,26 @@ namespace project.ViewModel
                             var user = db.Users.Where(u => u.Lgn == Login).FirstOrDefault();
 
                             if (user == null) // user doesn't exist
-                                ((View.LoginUserWindow)Application.Current.MainWindow).ShowErrorMsg($"User with login \"{Login}\" not found!");
+                                ShowErrorMsg?.Invoke($"User with login \"{Login}\" not found!");
                             else
                             {
                                 if (user.Pwd == Password)
                                     new MainWindow(Login).Show();
                                 else
-                                    ((View.LoginUserWindow)Application.Current.MainWindow).ShowErrorMsg($"Uncorrect password for login \"{Login}\"");
+                                    ShowErrorMsg?.Invoke($"Uncorrect password for login \"{Login}\"");
                             }
                         }
 
                     }
                     else
-                        ((View.LoginUserWindow)Application.Current.MainWindow).ShowErrorMsg("Fill all areas!");
+                        ShowErrorMsg?.Invoke("Fill all areas!");
                 }, obj => // can execute condition
                 {
                     return !string.IsNullOrEmpty(Login);
                 }));
             }
         }
+
+        public Action<string> ShowErrorMsg { get; internal set; }
     }
 }

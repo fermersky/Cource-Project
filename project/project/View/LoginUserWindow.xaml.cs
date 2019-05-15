@@ -26,6 +26,9 @@ namespace project.View
         {
             InitializeComponent();
             this.DataContext = new LoginUserViewModel();
+
+            var vm = DataContext as LoginUserViewModel; // Get VM from view DataContext
+            vm.ShowErrorMsg += ShowErrorMsg;
         }
     
         public void ShowErrorMsg(string msg)

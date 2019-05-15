@@ -80,7 +80,7 @@ namespace project.ViewModel
                     {
                         // get sql string from app.config
 
-                        var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffEntities"].ConnectionString); // entity connection string also contains metadata parameter, but sql connection string doesn't support it
+                        var entityConn = new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["StaffContext"].ConnectionString); // entity connection string also contains metadata parameter, but sql connection string doesn't support it
                         var sqlConn = new SqlConnectionStringBuilder(entityConn.ProviderConnectionString);
 
                         // check inputed data
@@ -88,16 +88,18 @@ namespace project.ViewModel
                         if (ServerName == sqlConn.DataSource && DatabseName == sqlConn.InitialCatalog && Login == sqlConn.UserID && Password == sqlConn.Password)
                             new LoginUserWindow().Show();
                         else // display error msg from LoginWindow
-                            ((LoginWindow)Application.Current.MainWindow).ShowErrorMsg("Inputed data is wrong!");
+                            ShowErrorMsg?.Invoke("Inputed data is wrong!");
                     }
                     else
-                        ((LoginWindow)Application.Current.MainWindow).ShowErrorMsg("Fill all areas!");
+                        ShowErrorMsg?.Invoke("Fill all areas!");
                 }, obj => // can execute condition
                 {
                     return isAreasAreFiled();
                 }));
             }
         }
+
+        public Action<string> ShowErrorMsg { get; internal set; }
 
         private bool isAreasAreFiled()
         {

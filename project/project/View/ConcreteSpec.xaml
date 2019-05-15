@@ -141,13 +141,6 @@
                                     Margin="8">
                                     <Button
                                         Style="{StaticResource MaterialDesignToolButton}"
-                                        Width="30"
-                                        Padding="2 0 2 0"
-                                        materialDesign:RippleAssist.IsCentered="True">
-                                        <materialDesign:PackIcon Kind="ShareVariant" />
-                                    </Button>
-                                    <Button
-                                        Style="{StaticResource MaterialDesignToolButton}"
                                         Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}"
                                         x:Name="EditBtn"
                                         Click="Button_Click1"
@@ -193,7 +186,7 @@
     </Grid>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Activated">
-            <i:InvokeCommandAction Command="{Binding RefreshDbCommand}" />
+            <i:InvokeCommandAction Command="{Binding FilterWorkersCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

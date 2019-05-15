@@ -26,13 +26,6 @@ namespace project.ViewModel
 
             using (var db = new StaffContext())
             {
-                // TODO
-                /* Доделать отчет по начислениям з.п
-                 * Сделать добавление сотрудника (с фоткой и т.д)
-                 * У Сергея спросить про адекватный вывод в listview
-                 * 
-                 */
-
                 var report = from Workers in db.Workers
                            join Specialties in db.Specialties on new { SpecialtyId = (int)Workers.SpecialtyId } equals new { SpecialtyId = Specialties.Id }
                            group new { Workers, Specialties } by new

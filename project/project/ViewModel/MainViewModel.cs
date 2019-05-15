@@ -3,6 +3,8 @@ using project.Model;
 using project.View;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -29,7 +31,7 @@ namespace project.ViewModel
                         // generate ViewModel
                         var vm = new ConcreteSpecViewModel(db.Workers
                             .Include("Specialties")
-                            .Where(w => w.Specialties.SpecName == spec)
+                            .Where(w => w.Specialties.SpecName == spec && w.IsDeleted == false)
                             .ToList(), spec, _autUser);
 
                         var win = new ConcreteSpec(vm, _autUser);
@@ -53,14 +55,14 @@ namespace project.ViewModel
             }
         }
 
-        public MainViewModel()
-        {
-
-        }
+        public MainViewModel() {}
 
         public MainViewModel(string autUser)
         {
             _autUser = autUser;
+
+            var DataBaseScript = ((IObjectContextAdapter)new StaffContext()).ObjectContext.CreateDatabaseScript();
+            new StreamWriter("script.sql").Write(DataBaseScript);
         }
     }
 }

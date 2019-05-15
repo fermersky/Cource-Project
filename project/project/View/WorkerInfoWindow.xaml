@@ -17,6 +17,10 @@
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
 
         <Image x:Name="Image" VerticalAlignment="Top" Margin="20 20 0 20" MaxHeight="300"  Source="{Binding ImgFile, Converter={StaticResource ImgSourceConverter}}"></Image>
         <StackPanel Margin="20 0 0 0" Grid.Column="1">
@@ -39,7 +43,7 @@
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#FF3D00">|</Label>
                     <Label Foreground="#1C1C1C" FontSize="18">Phone:</Label>
-                    <Label FontStyle="Italic" FontSize="18" Content="{Binding Phone}"></Label>
+                    <Label FontStyle="Italic" FontSize="18" Content="{Binding Phone, StringFormat=+380{0}}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="19" Foreground="#FF3D00">|</Label>
@@ -80,5 +84,6 @@
             ToolTip="Back to Workers">
             <materialDesign:PackIcon Kind="ArrowLeft" Height="24" Width="24" />   
         </Button>
+        <Button Grid.ColumnSpan="2" Grid.Row="1"></Button>
     </Grid>
 </Window>

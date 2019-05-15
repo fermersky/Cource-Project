@@ -107,7 +107,7 @@ namespace project.ViewModel
 
                         using (var db = new StaffContext())
                         {
-                            CurrentWorker.Phone = "+380" + CurrentWorker.Phone;
+                            CurrentWorker.Phone = CurrentWorker.Phone;
                             CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
                             CurrentWorker.IsDeleted = false;
 

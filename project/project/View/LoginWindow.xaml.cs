@@ -30,8 +30,10 @@ namespace project
         {
             InitializeComponent();
             this.DataContext = new LoginViewModel();
-        }
 
+            var vm = DataContext as LoginViewModel; // Get VM from view DataContext
+            vm.ShowErrorMsg += ShowErrorMsg; 
+        }
 
         public void ShowErrorMsg(string msg)
         {
