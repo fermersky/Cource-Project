@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StaffModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Certificates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="60" />
+    <Property Name="Description" Type="varchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Specialties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecName" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="StaffandCertificates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkerId" Type="int" />
+    <Property Name="CertificateId" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lgn" Type="varchar" MaxLength="20" />
+    <Property Name="Pwd" Type="varchar" MaxLength="20" />
+    <Property Name="Role" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Workers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="20" />
+    <Property Name="Firstname" Type="varchar" MaxLength="20" />
+    <Property Name="Lastname" Type="varchar" MaxLength="20" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Address" Type="varchar" MaxLength="30" />
+    <Property Name="Phone" Type="varchar" MaxLength="15" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="SpecialtyId" Type="int" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="ImgFile" Type="varchar" MaxLength="100" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <Association Name="FK__StaffandC__Certi__1B0907CE">
+    <End Role="Certificates" Type="Self.Certificates" Multiplicity="0..1" />
+    <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Certificates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffandCertificates">
+        <PropertyRef Name="CertificateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StaffandC__Worke__1A14E395">
+    <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+    <End Role="StaffandCertificates" Type="Self.StaffandCertificates" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StaffandCertificates">
+        <PropertyRef Name="WorkerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Workers__Special__1273C1CD">
+    <End Role="Specialties" Type="Self.Specialties" Multiplicity="0..1" />
+    <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialties">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workers">
+        <PropertyRef Name="SpecialtyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StaffModelStoreContainer">
+    <EntitySet Name="Certificates" EntityType="Self.Certificates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specialties" EntityType="Self.Specialties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StaffandCertificates" EntityType="Self.StaffandCertificates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__StaffandC__Certi__1B0907CE" Association="Self.FK__StaffandC__Certi__1B0907CE">
+      <End Role="Certificates" EntitySet="Certificates" />
+      <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StaffandC__Worke__1A14E395" Association="Self.FK__StaffandC__Worke__1A14E395">
+      <End Role="Workers" EntitySet="Workers" />
+      <End Role="StaffandCertificates" EntitySet="StaffandCertificates" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Workers__Special__1273C1CD" Association="Self.FK__Workers__Special__1273C1CD">
+      <End Role="Specialties" EntitySet="Specialties" />
+      <End Role="Workers" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

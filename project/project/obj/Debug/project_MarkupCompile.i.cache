@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Daniel\Cource-Project\project\project\App.xaml
-22037783069
-21750853300
-181797744505
-201957172844
-LoginWindow.xaml;MainWindow.xaml;
+71466150804
+2482335943
+321866296267
+261509656340
+View\AddWorkerWindow.xaml;View\ConcreteSpec.xaml;View\LoginUserWindow.xaml;View\LoginWindow.xaml;View\MainWindow.xaml;View\SalaryReportWindow.xaml;View\WorkerInfoWindow.xaml;
 
-False
+True
 
