@@ -31,7 +31,6 @@ namespace project.ViewModel
                 CurrentWorker = new Workers();
                 CurrentWorker.Gender = true;
                 specialties = db.Specialties.ToList();
-                //CurrentWorker = db.Workers.Where(w => w.Id == 1).FirstOrDefault();
             }
         }
 
@@ -77,7 +76,7 @@ namespace project.ViewModel
                         var file = new FileInfo(diag.FileName);
                         try
                         {
-                            file.CopyTo("../../images/" + diag.SafeFileName, true);
+                            file.CopyTo("../../images/" + diag.SafeFileName, true); // copy to project/images
                         }
                         catch (Exception) { }
                         ImgFile = diag.SafeFileName;
@@ -98,7 +97,7 @@ namespace project.ViewModel
                     {
                         if (CurrentWorker.ImgFile == null)
                         {
-                            if (CurrentWorker.Gender == true) // gender is male
+                            if (CurrentWorker.Gender == true) // if gender is male
                                 CurrentWorker.ImgFile = "man.png";
                             else
                                 CurrentWorker.ImgFile = "woman.png";
@@ -107,6 +106,8 @@ namespace project.ViewModel
 
                         using (var db = new StaffContext())
                         {
+                            // generate Worker for adding
+
                             CurrentWorker.Phone = CurrentWorker.Phone;
                             CurrentWorker.Specialties = db.Specialties.Where(s => s.Id == SpecId).FirstOrDefault();
                             CurrentWorker.IsDeleted = false;
@@ -122,16 +123,16 @@ namespace project.ViewModel
                             }
                         }
                     }
-                    else
+                    else // editing mode
                     {
                         using (var db = new StaffContext())
                         {
                             CurrentWorker.SpecialtyId = SpecId;
-                            var oldWorker = db.Workers.Include("Specialties").Where(w => w.Id == workerId).FirstOrDefault();
+                            var oldWorker = db.Workers.Include("Specialties").Where(w => w.Id == workerId).FirstOrDefault(); // worker which will be edited
                             
                             try
                             {
-                                db.Entry(oldWorker).CurrentValues.SetValues(CurrentWorker); // exchnage workers
+                                db.Entry(oldWorker).CurrentValues.SetValues(CurrentWorker); // exchange workers
                                 db.SaveChanges();
                             }
                             catch (Exception ex)
@@ -189,8 +190,11 @@ namespace project.ViewModel
 
         //
 
+        private int workerId; // storage id of worker which will be added or edited
+
+        //
+
         private int specId = -1;
-        private int workerId;
 
         public int SpecId
         {

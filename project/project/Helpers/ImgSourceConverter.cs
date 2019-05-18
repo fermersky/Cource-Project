@@ -29,9 +29,10 @@ namespace project.Helpers
                 if (!File.Exists(path))
                     return null;
 
-                using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    
+                    // read image as a byte array
+
                     rawImageData = new byte[fs.Length];
                     int count = (int)fs.Length / 1024;
                     for (int i = 0; i < count; i++)
@@ -42,7 +43,6 @@ namespace project.Helpers
 
                 using (var stream = new MemoryStream(rawImageData))
                 {
-
                     bitmapImage.BeginInit();
                     bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                     bitmapImage.CacheOption = BitmapCacheOption.OnLoad;

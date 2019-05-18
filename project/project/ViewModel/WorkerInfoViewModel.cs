@@ -21,7 +21,7 @@ namespace project.ViewModel
             using (var db = new StaffContext())
             {
                 Certificates = new List<StaffandCertificates>();
-                Certificates = db.StaffandCertificates.Include("Certificates").Where(w => w.Id == worker.Id).ToList();
+                Certificates = db.StaffandCertificates.Include("Certificates").Where(w => w.WorkerId == worker.Id).ToList();
             }
         }
 

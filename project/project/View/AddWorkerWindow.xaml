@@ -70,7 +70,7 @@
                     <RadioButton IsChecked="{Binding Gender}" Margin="35 0 20 0" VerticalAlignment="Center" Style="{StaticResource MaterialDesignRadioButton}">
                         Male
                     </RadioButton>
-                    <RadioButton VerticalAlignment="Center" Style="{StaticResource MaterialDesignRadioButton}">
+                    <RadioButton IsChecked="True" VerticalAlignment="Center" Style="{StaticResource MaterialDesignRadioButton}">
                         Female
                     </RadioButton>
                 </StackPanel>
