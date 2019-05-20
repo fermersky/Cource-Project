@@ -128,7 +128,10 @@ namespace project.ViewModel
                         using (var db = new StaffContext())
                         {
                             CurrentWorker.SpecialtyId = SpecId;
-                            var oldWorker = db.Workers.Include("Specialties").Where(w => w.Id == workerId).FirstOrDefault(); // worker which will be edited
+                            var oldWorker = db.Workers
+                                .Include("Specialties")
+                                .Where(w => w.Id == workerId)
+                                .FirstOrDefault(); // worker which will be edited
                             
                             try
                             {

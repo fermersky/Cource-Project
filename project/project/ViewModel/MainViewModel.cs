@@ -60,13 +60,6 @@ namespace project.ViewModel
         public MainViewModel(string autUser)
         {
             _autUser = autUser;
-
-            /*string DataBaseScript = ((IObjectContextAdapter)new StaffContext()).ObjectContext.CreateDatabaseScript();
-
-            using (StreamWriter sw = new StreamWriter("script.sql", false, System.Text.Encoding.Default))
-            {
-                sw.WriteLine(DataBaseScript);
-            }*/
         }
     }
 }

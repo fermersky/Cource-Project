@@ -175,9 +175,8 @@ namespace project.ViewModel
             {
                 return addWorkerCommand ?? (addWorkerCommand = new RelayCommand(obj =>
                 {
-                    using (var db = new StaffContext())
-                        new AddWorkerWindow().ShowDialog();
-                }, (obj) => 
+                    new AddWorkerWindow().ShowDialog();
+                },  (obj) => 
                 {
                     return (this._autUser == "admin") || false;
                 }));
@@ -256,13 +255,7 @@ namespace project.ViewModel
                 return viewWorkerInfoCommand ?? (viewWorkerInfoCommand = new RelayCommand((SelectedWorker) => 
                 {
                     using (var db = new StaffContext())
-                    {
-                        var worker = db.Workers
-                           .Include("Specialties")
-                           .Where(w => w.Id == (SelectedWorker as Workers).Id);
-
                         new WorkerInfoWindow(SelectedWorker as Workers).ShowDialog();
-                    } 
                 }));
             }
         }
